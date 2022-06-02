@@ -8,5 +8,13 @@
     ~/.config/i3:
         path: config/i3/
         create: true
+    ~/.config/nvim: nvim
+    	path: config/nvim/
+    	create: true
+
+
+- clean: ['~']
+
+- link:
 
 
