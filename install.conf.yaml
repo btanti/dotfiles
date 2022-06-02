@@ -6,21 +6,19 @@
     ~/.bash_logout: bash_logout
     ~/.gitconfig: gitconfig
     ~/.config/i3:
-        path: config/i3/
+        path: i3/
         create: true
     ~/.config/nvim:
-        path: config/nvim/
+        path: nvim/
+        create: true
+    ~/.config/picom.conf:
+        path: picom.conf
+    ~/.zotero:
+        path: zotero/
         create: true
 
 
 
 - clean: ['~']
-
-- link:
-
-
-- clean: ['~']
-
-- link:
 
 
