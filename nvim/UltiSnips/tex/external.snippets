@@ -1,0 +1,136 @@
+### optidef ###
+
+
+
+### istgame ###
+
+
+
+
+### doc2anki ###
+
+
+snippet dta "doc to anki" b
+\begin{dtacard}
+	\begin{dtaques}
+		${1:[Question]}
+	\end{dtaques}
+	\begin{dtaans}
+		${2:[Answer]}
+	\end{dtaans}
+\end{dtacard}
+endsnippet
+
+
+### siunitx ###
+
+snippet SIx "SI units" iA
+\SI{$1}{$2}
+endsnippet
+
+
+### cleverref ###
+
+snippet ref "cleverref" A
+\cref{${1:${VISUAL}}}
+endsnippet
+
+snippet Ref "cleverref capital" A
+\Cref{${1:${VISUAL}}}
+endsnippet
+
+### tikz ###
+
+snippet nn "Tikz node" w
+\node[$5] (${1/[^0-9a-zA-Z]//g}${2}) ${3:at (${4:0,0}) }{$${1}$};
+$0
+endsnippet
+
+snippet plot "Plot" w
+\begin{figure}[$1]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			xmin= ${2:-10}, xmax= ${3:10},
+			ymin= ${4:-10}, ymax = ${5:10},
+			axis lines = middle,
+		]
+			\addplot[domain=$2:$3, samples=${6:100}]{$7};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{$8}
+	\label{${9:$8}}
+\end{figure}
+endsnippet
+
+
+### minted ###
+
+snippet mintp "python minted" bW
+\begin{minted}
+{python}
+$0
+\end{minted}
+endsnippet
+
+snippet mp "python minted inline" 
+\mnp{$0}
+endsnippet
+
+### todonotes ###
+
+snippet td "Todo Note" b
+\todo{${1:${VISUAL}}}$0
+endsnippet
+
+snippet tdr "Todo Remark" b
+\todoremark{${1:${VISUAL}}}$0
+endsnippet
+
+snippet tde "Todo Error" b
+\todoerror{${1:${VISUAL}}}$0
+endsnippet
+
+
+
+### sympy ###
+
+
+snippet sympy "sympyblock " w
+sympy $1 sympy$0
+endsnippet
+
+priority 10000
+snippet 'sympy(.*)sympy' "sympy" wr
+`!p
+from sympy import *
+x, y, z, t = symbols('x y z t')
+k, m, n = symbols('k m n', integer=True)
+f, g, h = symbols('f g h', cls=Function)
+init_printing()
+snip.rv = eval('latex(' + match.group(1).replace('\\', '').replace('^', '**').replace('{', '(').replace('}', ')') + ')')
+`
+endsnippet
+
+### mathematica ###
+
+priority 1000
+snippet math "mathematicablock" w
+math $1 math$0
+endsnippet
+
+### numpy ###
+
+snippet "np(\[(\[\d+(,[\d]+)*\])(,\[\d+(,[\d]+)*\])*\])" "numpy 2d to string" riA
+`!p from numpy import array2string, array
+snip.rv=array2string(array(eval(match.group(1))))`
+endsnippet
+
+snippet "npl([pbBvV])(\[(\[\d+(,[\d]+)*\])(,\[\d+(,[\d]+)*\])*\])" "numpy2d to latex" riA
+`!p from numpy import array2string, array
+snip.rv = "\\begin{" + match.group(1) + "matrix}"
+for i, line in enumerate(eval(match.group(2))):
+	snip += "\t" + ' & '.join([str(d) for d in line]) + "\\\\"
+snip += '\\end{' + match.group(1) + 'matrix}'`
+endsnippet
+

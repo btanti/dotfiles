@@ -1,0 +1,216 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+def comment(): 
+	return vim.eval('vimtex#syntax#in_comment()') == '1'
+def env(name):
+	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+	return x != '0' and y != '0'
+
+def create_table(snip):
+	rows = snip.buffer[snip.line].split('x')[0]
+	cols = snip.buffer[snip.line].split('x')[1]
+	int_val = lambda string: int(''.join(s for s in string if s.isdigit()))
+	rows = int_val(rows)
+	cols = int_val(cols)
+	offset = cols + 1
+	old_spacing = snip.buffer[snip.line][:snip.buffer[snip.line].rfind('\t') + 1]
+	snip.buffer[snip.line] = ''
+	final_str = old_spacing + "\\begin{tabular}{|" + "|".join(['$' + str(i + 1) for i in range(cols)]) + "|}\n"
+	for i in range(rows):
+		final_str += old_spacing + '\t'
+		final_str += " & ".join(['$' + str(i * cols + j + offset) for j in range(cols)])
+		final_str += " \\\\\\\n"
+	final_str += old_spacing + "\\end{tabular}\n$0"
+	snip.expand_anon(final_str)
+def add_row(snip):
+	row_len = int(''.join(s for s in snip.buffer[snip.line] if s.isdigit()))
+	old_spacing = snip.buffer[snip.line][:snip.buffer[snip.line].rfind('\t') + 1]
+	snip.buffer[snip.line] = ''
+	final_str = old_spacing
+	final_str += " & ".join(['$' + str(j + 1) for j in range(row_len)])
+	final_str += " \\\\\\"
+	snip.expand_anon(final_str)
+endglobal
+
+
+
+snippet cnt "Center" bi
+\begin{center}
+	${0:${VISUAL}}
+\end{center}
+endsnippet
+
+pre_expand "create_table(snip)"
+snippet "gentbl(\d+)x(\d+)" "Generate table of *width* by *height*" r
+endsnippet
+
+pre_expand "add_row(snip)"
+snippet "tr(\d+)" "Add table row of dimension ..." r
+endsnippet
+
+snippet beg "begin{} / end{}" bA
+\\begin{$1}
+	$0
+\\end{$1}
+endsnippet
+
+priority 100
+context "math()"
+snippet ... "ldots" iA
+\ldots
+endsnippet
+
+snippet table "Table environment" b
+\begin{table}[${1:htpb}]
+	\centering
+	\caption{${2:caption}}
+	\label{tab:${3:label}}
+	\begin{tabular}{${5:c}}
+	$0${5/((?<=.)c|l|r)|./(?1: & )/g}
+	\end{tabular}
+\end{table}
+endsnippet
+
+snippet fig "Figure environment" b
+\begin{figure}[${1:H}]
+	\centering
+	\includegraphics[width=0.8\textwidth]{${2:filepath}}
+	\caption{${3:insert caption}}
+	\label{fig:${4:${3/\W+/-/g}}}
+\end{figure}
+endsnippet
+
+snippet enum "Enumerate" bA
+\begin{enumerate}
+	\item $0
+\end{enumerate}
+endsnippet
+
+snippet item "Itemize" bA
+\begin{itemize}
+	\item $0
+\end{itemize}
+endsnippet
+
+snippet desc "Description" b
+\begin{description}
+	\item[$1] $0
+\end{description}
+endsnippet
+
+snippet pac "usepackage - removes square braces if options removed" b
+\usepackage`!p snip.rv='[' if t[1] else ""`${1:options}`!p snip.rv = ']' if t[1] else ""`{${2:package}}$0
+endsnippet
+
+snippet pac* "Package (no option)" b
+\usepackage{${1:package}}$0
+endsnippet
+
+priority 1000
+context "math()"
+snippet '^.*\)/' "() frac" wrA
+`!p
+stripped = match.string[:-1]
+depth = 0
+i = len(stripped) - 1
+while True:
+	if stripped[i] == ')': depth += 1
+	if stripped[i] == '(': depth -= 1
+	if depth == 0: break;
+	i-=1
+snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
+`{$1}$0
+endsnippet
+
+snippet chap "Chapter" wi
+\chapter{$1${VISUAL}}
+endsnippet
+
+snippet sec "Section" wi
+\section{$1${VISUAL}}
+\label{sec:${1/\s/_/g}}
+endsnippet
+
+snippet sec* "Section*" wi
+\section*{$1${VISUAL}}
+\label{sec:${1/\s/_/g}}
+endsnippet
+
+snippet sub "Subsection" wi
+\subsection{$1${VISUAL}}
+\label{subsec:${1/\s/_/g}}
+endsnippet
+
+snippet sub* "Subsection*" wi
+\subsection*{$1${VISUAL}}
+\label{subsec:${1/\s/_/g}}
+endsnippet
+
+snippet subsub "Subsection" wi
+\subsubsection{$1${VISUAL}}
+\label{subsubsec:${1/\s/_/g}}
+endsnippet
+
+snippet subsub* "Subsubsection" wi
+\subsubsection*{$1${VISUAL}}
+\label{subsubsec:${1/\s/_/g}}
+endsnippet
+
+snippet par "Paragraph" wi
+\paragraph{$1${VISUAL}}
+\label{par:${1/\s/_/g}}
+endsnippet
+
+snippet par* "Paragraph*" wi
+\paragraph*{$1${VISUAL}}
+\label{par:${1/\s/_/g}}
+endsnippet
+
+snippet subpar "Sub Paragraph" wi
+\subparagraph{$1${VISUAL}}
+\label{subpar:${1/\s/_/g}}
+endsnippet
+
+snippet subpar* "Sub Paragraph*" wi
+\subparagraph*{$1${VISUAL}}
+\label{subpar:${1/\s/_/g}}
+endsnippet
+
+snippet ul "underline" b
+\underline{${1:${VISUAL}}}
+endsnippet
+
+snippet vr "verbatim" i
+\verb+${1:${VISUAL}}+$0
+endsnippet
+
+snippet ct "cite" b
+\cite{${1:${VISUAL}}}
+endsnippet
+
+# numerical
+snippet "np(\[(\[\d+(,[\d]+)*\])(,\[\d+(,[\d]+)*\])*\])" "numpy 2d to string" riA
+`!p from numpy import array2string, array
+snip.rv=array2string(array(eval(match.group(1))))`
+endsnippet
+
+snippet "npl([pbBvV])(\[(\[\d+(,[\d]+)*\])(,\[\d+(,[\d]+)*\])*\])" "numpy2d to latex" riA
+`!p from numpy import array2string, array
+snip.rv = "\\begin{" + match.group(1) + "matrix}"
+for i, line in enumerate(eval(match.group(2))):
+	snip += "\t" + ' & '.join([str(d) for d in line]) + "\\\\"
+snip += '\\end{' + match.group(1) + 'matrix}'`
+endsnippet
+
+snippet dta "doc to anki" b
+\begin{dtacard}
+	\begin{dtaques}
+		${1:[Question]}
+	\end{dtaques}
+	\begin{dtaans}
+		${2:[Answer]}
+	\end{dtaans}
+\end{dtacard}
+endsnippet
+

@@ -1,0 +1,374 @@
+
+snippet notes "notes template" b
+\documentclass[plain]{article}
+\usepackage{lipsum}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\textwidth 6.1in
+\textheight 9in
+\parskip 1ex
+\usepackage[framemethod=TikZ]{mdframed}
+%
+% ADD PACKAGES here:
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+ \newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\Ex}{\mathbb{E}}
+\usepackage{psfrag}
+\usepackage{amsmath,amsfonts,graphicx}
+\usepackage{amssymb}
+\usepackage{cleverref}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{bbm}
+\usepackage{bm}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{float}
+\usepackage[short]{optidef}
+\usepackage{caption}
+\usepackage{minted}
+\usepackage{subcaption}
+\usetikzlibrary{shapes,arrows,calc}
+\newtheorem{thm}{Theorem}
+\newtheorem{example}{Example}
+\newtheorem{defin}{Definition}
+\newtheorem{defn}{Definition}
+\newtheorem{rem}{Remark}
+\usepackage{framed}
+\newcommand{\Pd}{\mathbb{P}}
+\newtheorem{algorithm}{Algorithm}
+\newtheorem{fact}{Fact}
+
+ \newcounter{lecnum}
+
+\newenvironment{dtaques}[1][]{%
+\stepcounter{theo}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+{\strut Question~\thetheo};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+{\strut Question~\thetheo:~#1};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=blue!20,%
+linewidth=2pt,topline=true,
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+
+\newenvironment{dtaans}[1][]{%
+\stepcounter{theo}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=red!20]
+{\strut Answer};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=red!20]
+{\strut Answer};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=red!20,%
+linewidth=2pt,topline=true,
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
+\begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+
+
+\newcommand{\EE}{ \mathsf{E} }
+\newcommand{\Var}{ \mbox{Var} }
+\newcommand{\Cov}{ \mbox{Cov} }
+\newcommand{\1}{\mathbbm{1}}
+\newcommand{\Prob}{ \mathsf{P} }
+\newcommand{\disfrac}[2]{ {\displaystyle \frac{#1}{#2}} }
+\newcommand{\texfrac}[2]{ {\textstyle \frac{#1}{#2}} }
+\newcommand{\dissum}[2]{ {\displaystyle \sum_{#1}^{#2}} }
+\newcommand{\OR}{ \mbox{~or~} }
+\newcommand{\cond}[1]{ \left|\,#1\right. }
+\newcommand{\ith}[1]{ #1^{\mbox{\tiny th}} }
+\newcommand{\matgen}[1]{ \left[ \begin{array}#1 \end{array} \right] }
+
+\newcommand{\RR}{ {\bf R} }
+\newcommand{\NN}{ {\bf N} }
+\newcommand{\II}{ {\bf I} }
+\newcommand{\ee}{ {\bf e} }
+\newcommand{\LL}{ {\bf L} }
+\newcommand{\PP}{ {\bf P} }
+\newcommand{\calF}{ {\cal F} }
+\newcommand{\One}{ \mbox{\sffamily 1} }
+\newcommand{\ZZ}{ {\bf Z} }
+\newcommand\E{\mathbb{E}}
+
+\newcommand{\R}{{\sf R\hspace*{-0.9ex}%
+\rule{0.15ex}{1.5ex}\hspace*{0.9ex}}}
+\newcommand{\N}{{\sf N\hspace*{-1.0ex}%
+\rule{0.15ex}{1.3ex}\hspace*{1.0ex}}}
+\newcommand{\Q}{{\sf Q\hspace*{-1.1ex}%
+\rule{0.15ex}{1.5ex}\hspace*{1.1ex}}}
+\newcommand{\C}{{\sf C\hspace*{-0.9ex}%
+\rule{0.15ex}{1.3ex}\hspace*{0.9ex}}}
+
+\newcommand{\ds}{ \displaystyle }
+
+%
+% The following macro is used to generate the header.
+%
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf #3}
+	\hfill \today} 
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\hfill \it } }
+      \vspace{2mm}
+       \hbox to 6.28in { {\hfill \it Author: #2} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#1 (#2)}{#1}
+   \vspace*{4mm}
+}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp} % provide euro and other symbols
+
+\let\b\mathbf
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+
+\newtheorem{theorem}{Theorem}[lecnum]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+% **** IF YOU WANT TO DEFINE ADDITIONAL MACROS FOR YOURSELF, PUT THEM HERE:
+
+\newcommand{\todoerror}[2][]{\todo[color=red!70, #1]{#2}}
+\newcommand{\todowarn}[2][]{\todo[color=orange, #1]{#2}}
+\newcommand{\todoremark}[2][]{\todo[color=yellow!80!black, #1]{#2}}
+\newcommand{\todohint}[2][]{\todo[color=green!20, #1]{#2}}
+\newcommand{\tododone}[2][]{\todo[color=blue!50, #1]{#2}}
+
+\begin{document}
+%FILL IN THE RIGHT INFO.
+%\lecture{**TITLE**}{**LECTURER**}{**SUBJECT**}
+\lecture{${1:TITLE}}{${2:Bryan Tantisujjatham}}{${3:SUBJECT}}
+
+\makeatother
+\setlist{noitemsep}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+%\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\setlist{noitemsep}
+
+\author{Bryan Tantisujjatham}
+\date{\today}
+\listoftodos
+\todototoc
+\end{document}
+endsnippet
+
+snippet notes2 "Notes template 2" b
+\documentclass[11pt,letterpaper]{article}
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+
+% -------------------
+% Packages
+% -------------------
+\usepackage{
+	amsmath,			% Math Environments
+	amssymb,			% Extended Symbols
+	amsthm,			    % Theorem Environments
+	cancel,			    % Use Cancels
+	enumerate,		    % Enumerate Environments
+	graphicx,			% Include Images
+	lastpage,			% Reference Lastpage
+	multicol,			% Use Multi-columns
+	multirow,			% Use Multi-rows
+	xcolor			    % Use Colors
+}
+
+
+% -------------------
+% Font
+% -------------------
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+
+%\usepackage[T1]{fontenc}
+%\usepackage{mathpazo}
+
+%\usepackage[bitstream-charter]{mathdesign}
+%\usepackage[T1]{fontenc}
+
+
+% -------------------
+% Tikz & PGF
+% -------------------
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{
+	calc,
+	decorations.pathmorphing,
+	matrix,arrows,
+	positioning,
+	shapes.geometric
+}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+
+% -------------------
+% Commands
+% -------------------
+
+% Problem Labels
+\newcounter{problem}
+\newcommand{\problem}{
+\stepcounter{problem} %
+\noindent \textbf{Problem \theproblem. }}
+\newcommand{\solution}{\noindent \textbf{Solution: }}
+\newcommand{\pf}{\noindent\emph{Proof. }}
+
+% Special Characters
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+% Math Operators
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\disc}{disc}
+\DeclareMathOperator{\Span}{span}
+
+% Special Commands
+\newcommand{\pspace}{\par\vspace{\baselineskip}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\defeq}{\stackrel{\text{def}}{=}}
+\newcommand{\ov}[1]{\overline{#1}}
+\newcommand{\ma}[1]{\stackrel{#1}{\longrightarrow}}
+\newcommand{\twomatrix}[4]{\begin{pmatrix} #1 & #2 \\ #3 & #4 \end{pmatrix}}
+
+
+% -------------------
+% Header & Footer
+% -------------------
+\usepackage{fancyhdr}
+
+\fancypagestyle{title}{
+	%Headers
+	\fancyhead[L]{\Large Bryan Tantisujjatham}
+	\fancyhead[C]{\Large $1}
+	\fancyhead[R]{\Large Homework \# $2}
+	\renewcommand{\headrulewidth}{0.2pt}
+	%Footers
+	\fancyfoot[L]{}
+	\fancyfoot[C]{}
+	\fancyfoot[R]{\thepage \,of \pageref{LastPage}}
+	\renewcommand{\footrulewidth}{0.0pt}
+}
+\fancypagestyle{pages}{
+	%Headers
+	\fancyhead[L]{}
+	\fancyhead[C]{}
+	\fancyhead[R]{}
+	\renewcommand{\headrulewidth}{0.0pt}
+	%Footers
+	\fancyfoot[L]{}
+	\fancyfoot[C]{}
+	\fancyfoot[R]{\thepage \,of \pageref{LastPage}}
+	\renewcommand{\footrulewidth}{0.0pt}
+}
+\headheight=18pt
+\footskip=14pt
+
+\pagestyle{pages}
+
+
+% -------------------
+% Content
+% -------------------
+\begin{document}
+\thispagestyle{title}
+
+
+
+% Problem 1
+\problem \pspace
+
+\solution \qed \pspace
+
+\end{document}
+endsnippet
+
+snippet sfig "subfigure" b
+\begin{figure}
+     \centering
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{${1:filepath.png}}
+         \caption{${2:caption1}}
+         \label{${5:label1}}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{${3:filepath2.png}}
+         \caption{${4:caption2}}
+         \label{${6:label2}}
+     \end{subfigure}
+\end{figure}
+endsnippet
+
+snippet prefig "inkscape figure preamble" bA
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+endsnippet
