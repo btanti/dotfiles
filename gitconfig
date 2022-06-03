@@ -6,3 +6,5 @@
 [user]
 	email = bbt27@cornell.edu
 	name = btanti
+[credential]
+	helper = manager-core
