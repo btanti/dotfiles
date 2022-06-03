@@ -1,12 +1,15 @@
 - apt:
+   - curl
    - kitty
    - okular
+   - perl
    - python3-pip
    - python3
    - snap
    - vlc
    - youtube-dl
    - zathura
+   - git
 
 
 

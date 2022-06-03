@@ -6,10 +6,10 @@ defaults:
      relink: true
   
 - link:
-    ~/.profile: profile
-    ~/.bashrc: bashrc
-    ~/.bash_logout: bash_logout
-    ~/.gitconfig: gitconfig
+    ~/.profile:
+    ~/.bashrc:
+    ~/.bash_logout:
+    ~/.gitconfig:
     ~/.config/i3:
         path: i3/
     ~/.config/nvim:
@@ -17,12 +17,19 @@ defaults:
     ~/.config/picom.conf:
         path: picom.conf
 
-
-
 - clean: ['~', '~/.config/']
 
-- clean: ['~']
+- pip:
+    file: requirements.txt
+    binary: /usr/local/bin/pip3
+    user: true    # Like --user
+    stdout: false # Print the execution stdout
+    stderr: true  # Print the execution stderr
 
-- link:
-
-
+- git:
+    '~/.local/share/nvim/site/pack/packer/start/packer.nvim':
+        url: 'https://github.com/wbthomason/packer.nvim'
+        description: 'packer - plugin manager for nvim'
+    '~/.oh-my-zsh/custom/themes/powerlevel10k':
+        url: 'https://github.com/romkatv/powerlevel10k.git'
+        description: 'oh my zsh - powerlevel10k'
