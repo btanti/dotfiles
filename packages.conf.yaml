@@ -1,15 +1,29 @@
 - apt:
    - curl
+   - feh
+   - keepassxc
    - kitty
    - okular
    - perl
    - python3-pip
    - python3
+   - redshift
    - snap
    - vlc
    - youtube-dl
    - zathura
-   - git
-
+   - git-all
+   - ninja-build
+   - gettext
+   - libtool
+   - libtool-bin
+   - autoconf
+   - automake
+   - cmake
+   - g++
+   - wine
+   - pkg-config
+   - unzip curl
+   - doxygen
 
 

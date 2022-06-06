@@ -16,4 +16,11 @@ git submodule update --init --recursive "${DOTBOT_DIR}"
 
 curl -s https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh | bash
 
+git lfs install
+
+cd ~/tmp/neovim && make
+sudo make install
+cd ../.. && rm -r ~/tmp
+
+
 

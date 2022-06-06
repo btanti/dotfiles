@@ -19,17 +19,23 @@ defaults:
 
 - clean: ['~', '~/.config/']
 
-- pip:
+- git:
+    '~/.local/share/nvim/site/pack/packer/start/packer.nvim':
+        url: 'https://github.com/wbthomason/packer.nvim'
+        description: 'packer - plugin manager for nvim'
+    '~/tmp/neovim/'
+        url: 'https://github.com/neovim/neovim'
+        description: 'neovim bleeding edge'
+    '~/personal_website/'
+        url: 'https://github.com/btanti/btanti.github.io'
+        description: 'personal webpage'
+    '~/rofi/'
+        url: 'https://github.com/davatorium/rofi'
+        description: 'rofi'
+        
+ - pip:
     file: requirements.txt
     binary: /usr/local/bin/pip3
     user: true    # Like --user
     stdout: false # Print the execution stdout
     stderr: true  # Print the execution stderr
-
-- git:
-    '~/.local/share/nvim/site/pack/packer/start/packer.nvim':
-        url: 'https://github.com/wbthomason/packer.nvim'
-        description: 'packer - plugin manager for nvim'
-    '~/.oh-my-zsh/custom/themes/powerlevel10k':
-        url: 'https://github.com/romkatv/powerlevel10k.git'
-        description: 'oh my zsh - powerlevel10k'

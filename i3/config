@@ -11,6 +11,12 @@
 for_window [class=".*"] border pixel 0
 set $mod Mod4
 
+default_floating_border pixel
+
+#popups for windows
+popup_during_fullscreen smart
+
+# i3-gaps settings
 gaps inner 15 
 gaps outer 15
 # Font for window titles. Will also be used by the bar unless a different font
@@ -47,7 +53,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -166,10 +172,6 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -194,7 +196,16 @@ bindsym $mod+r mode "resize"
 # use polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh --panels &
 exec_always --no-startup-id picom --experimental-backends &
-exec_always --no-startup-id redshift &
-exec_always --no-startup-id feh --bg-scale material-design-grey-po-2560x1440.jpg 
+exec_always --no-startup-id redshift -O 2281 &
+exec_always --no-startup-id feh --bg-scale --randomize ~/Pictures/wallpapers/*
+
 # inkscape settings
 for_window [class="URxvt"] floating_enable
+
+# open nvim terminal
+bindsym $mod+Shift+s exec "kitty -e nvim"
+
+# autosplit
+exec --no-startup-id python ~/.dotfiles/i3/i3-autosplit/i3-autosplit.py
+
+for_window [instance=notepad] sticky enable
