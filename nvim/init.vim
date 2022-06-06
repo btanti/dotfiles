@@ -6,6 +6,8 @@ Plug 'SirVer/ultisnips'
     let g:UltiSnipsJumpForwardTrigger = '<tab>'
     let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+Plug 'tpope/vim-fugitive'
+Plug 'vim-test/vim-test'
 Plug 'lervag/vimtex'
     let g:tex_flavor='latex'
     let g:vimtex_quickfix_mode=0
@@ -29,6 +31,30 @@ nnoremap <leader>fr <cmd>lua require('telescope.builtin').lsp_references()<cr>
 nnoremap <leader>fd <cmd>lua require('telescope.builtin').lsp_definitions()<cr>
 nnoremap <leader>ft <cmd>lua require('telescope.builtin').lsp_type_definitions()<cr>
 
+" vim-test bindings
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+let test#python#runner = 'pytest'
+
+" fugitive bindings
+nnoremap <Leader>ga :Git add . -v <CR>
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gc :Git commit -v -q<CR>
+nnoremap <Leader>gt :Git commit -v -q %:p<CR>
+nnoremap <Leader>gd :Git diff<CR>
+nnoremap <Leader>ge :Gedit<CR>
+nnoremap <Leader>gr :Gread<CR>
+nnoremap <Leader>gw :Gwrite<CR><CR>
+nnoremap <Leader>gl :silent! Glog<CR>:bot copen<CR>
+nnoremap <Leader>gp :Ggrep<Space>
+nnoremap <Leader>gm :Gmove<Space>
+nnoremap <Leader>gb :Git branch<Space>
+nnoremap <Leader>go :Git checkout<Space>
+nnoremap <Leader>gps :Dispatch! git push<CR>
+nnoremap <Leader>gpl :Dispatch! git pull<CR>
 " vim switching windows
 map <Leader>j <C-w>j
 map <Leader>k <C-w>k
