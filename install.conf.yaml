@@ -16,6 +16,13 @@ defaults:
         path: nvim/
     ~/.config/picom.conf:
         path: picom.conf
+    ~/.config/kitty:
+        path: kitty/
+    ~/.taskrc:
+    ~/.fehbg:
+    ~/.git-credentials:
+    ~/.ssh:
+
 
 - clean: ['~', '~/.config/']
 

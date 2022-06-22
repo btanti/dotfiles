@@ -134,3 +134,27 @@ unset __conda_setup
 PATH=/usr/local/texlive/2022/bin/x86_64-linux:$PATH; export PATH 
 MANPATH=/usr/local/texlive/2022/texmf-dist/doc/man:$MANPATH; export MANPATH 
 INFOPATH=/usr/local/texlive/2022/texmf-dist/doc/info:$INFOPATH; export INFOPATH
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --no-messages --hidden --follow -g "!{node_modules/*,.git/*,.wine/*,.snap/*,snap/*,miniconda3/*,.mozilla/*,.config/d*/*}"'
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+#export FZF_DEFAULT_OPTS="
+#--layout=reverse
+#--info=inline
+#--height=80%
+#--multi
+#--preview-window=:hidden
+#--preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
+#--color='hl:148,hl+:154,pointer:032,marker:010,bg+:237,gutter:008'
+#--prompt='∼ ' --pointer='▶' --marker='✓'
+#--bind '?:toggle-preview'
+#--bind 'ctrl-a:select-all'
+#--bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
+#--bind 'ctrl-e:execute(echo {+} | xargs -o vim)'
+#--bind 'ctrl-v:execute(code {+})'
+#"
+
+export EDITOR=/usr/bin/nvim

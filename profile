@@ -30,3 +30,5 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 PATH=/usr/local/texlive/2022/bin/x86_64-linux:$PATH; export PATH 
 MANPATH=/usr/local/texlive/2022/texmf-dist/doc/man:$MANPATH; export MANPATH 
 INFOPATH=/usr/local/texlive/2022/texmf-dist/doc/info:$INFOPATH; export INFOPATH
+PATH=/home/bryan/miniconda3/bin:$PATH; export PATH
+

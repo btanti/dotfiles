@@ -52,7 +52,20 @@ set recolor-darkcolor           "#f8f8f2" # Foreground
 #
 set adjust-open width
 set recolor true
+map r reload
+map p print
+map i recolor
+map J zoom out
+map K zoom in
+map R rotate
+unmap f
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
 
+set guioptions none
+
+# Open document in fit-width mode by default
+set adjust-open "best-fit"
 map <Left> navigate previous
 map <Right> navigate next
 map <C-=> zoom in
