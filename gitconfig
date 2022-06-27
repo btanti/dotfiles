@@ -7,4 +7,4 @@
 	email = bbt27@cornell.edu
 	name = btanti
 [credential]
-	helper = cache
+	helper = store

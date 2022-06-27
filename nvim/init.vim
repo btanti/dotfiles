@@ -45,7 +45,6 @@ set spelllang=en_us
 set shiftround
 set shiftwidth=4
 
-
 " vim-test bindings
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
@@ -180,7 +179,6 @@ vim.api.nvim_set_keymap(
   'n', '<Leader>p', ':lua vim.diagnostic.goto_prev()<CR>',
   { noremap = true, silent = true }
 )
-
 
 require 'nvim-treesitter.configs'.setup {
 	ignore_install = { "latex" },
