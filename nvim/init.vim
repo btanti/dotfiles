@@ -1,4 +1,4 @@
-" Vim-plug initialization
+" Vim-plug initialization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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
 call plug#begin()
 Plug 'SirVer/ultisnips'
     let g:UltiSnipsExpandTrigger = '<tab>'
@@ -34,7 +34,7 @@ set ignorecase
 " Line numbers on
 set number
 
-" ???
+" for nvim-compe
 set completeopt=menu,menuone,noselect
 
 " Spellchecker settings
@@ -46,11 +46,11 @@ set shiftround
 set shiftwidth=4
 
 " vim-test bindings
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
+nmap <silent> <leader>tt :TestNearest<CR>
+nmap <silent> <leader>tT :TestFile<CR>
+nmap <silent> <leader>ta :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tg :TestVisit<CR>
 let test#python#runner = 'pytest'
 
 " trouble bindings
@@ -78,6 +78,11 @@ nnoremap <Leader>go :Git checkout<Space>
 nnoremap <Leader>gps :Dispatch! git push<CR>
 nnoremap <Leader>gpl :Dispatch! git pull<CR>
 
+nnoremap zc :PackerCompile<cr>
+nnoremap zi :PackerInstall<cr>
+nnoremap zs :PackerSync<cr>
+nnoremap zS :PackerStatus<cr>
+nnoremap zu :PackerUpdate<cr>
 " clear search highlighting
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
@@ -103,7 +108,6 @@ nnoremap <C-f> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/
 " Toggleterm settings
 autocmd TermEnter term://*toggleterm#*
       \ tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
-
 
 augroup YankHighlight
     autocmd!
@@ -133,7 +137,7 @@ let g:vimtex_compiler_latexmk = {
 "let g:vimtex_view_general_viewer = 'okular'
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
- set hidden
+set hidden
     if has('win32') || (has('unix') && exists('$WSLENV'))
      if executable('mupdf.exe')
        let g:vimtex_view_general_viewer = 'mupdf.exe'
@@ -179,6 +183,17 @@ vim.api.nvim_set_keymap(
   'n', '<Leader>p', ':lua vim.diagnostic.goto_prev()<CR>',
   { noremap = true, silent = true }
 )
+
+function _G.set_terminal_keymaps()
+  local opts = {noremap = true}
+  vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
+end
+
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 require 'nvim-treesitter.configs'.setup {
 	ignore_install = { "latex" },

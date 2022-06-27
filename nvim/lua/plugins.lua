@@ -6,6 +6,9 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
 	-- Packer can manage itself
 	--
+	--
+	use 'wbthomason/packer.nvim'
+	use 'lewis6991/impatient.nvim'
 	use 'neovim/nvim-lspconfig'
 	use 'untitled-ai/jupyter_ascending.vim'
 	use 'navarasu/onedark.nvim'
@@ -21,7 +24,6 @@ return require('packer').startup(function()
 	use 'hrsh7th/nvim-cmp'
 	use 'hrsh7th/cmp-nvim-lsp'
 	use("quangnguyen30192/cmp-nvim-ultisnips")
-	use 'wbthomason/packer.nvim'
 	use "lukas-reineke/indent-blankline.nvim"
 	use "ray-x/lsp_signature.nvim"
 
@@ -208,6 +210,7 @@ return require('packer').startup(function()
 					--[[on_attach = on_attach]]
 				--[[}]]
 				lspconfig.sumneko_lua.setup {
+					filetypes = { "lua" },
 					capabilities = capabilities,
 					on_attach = on_attach
 				}
@@ -247,13 +250,13 @@ return require('packer').startup(function()
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate'
 	}
-	use {
-		"ThePrimeagen/refactoring.nvim",
-		requires = {
-			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-treesitter/nvim-treesitter" }
-		}
-	}
+       --[[ use {]]
+		--[["ThePrimeagen/refactoring.nvim",]]
+		--[[requires = {]]
+			--[[{ "nvim-lua/plenary.nvim" },]]
+			--[[{ "nvim-treesitter/nvim-treesitter" }]]
+		--[[}]]
+	--[[}]]
 
 	use { 'ibhagwan/fzf-lua',
 		-- optional for icon support
@@ -261,111 +264,7 @@ return require('packer').startup(function()
 	}
 
 	local actions = require "fzf-lua.actions"
-	require 'fzf-lua'.setup {
-		-- fzf_bin         = 'sk',            -- use skim instead of fzf?
-		-- https://github.com/lotabout/skim
-		global_resume       = true, -- enable global `resume`?
-		-- can also be sent individually:
-		-- `<any_function>.({ gl ... })`
-		global_resume_query = true, -- include typed query in `resume`?
-		winopts             = {
-			-- split         = "belowright new",-- open in a split instead?
-			-- "belowright new"  : split below
-			-- "aboveleft new"   : split above
-			-- "belowright vnew" : split right
-			-- "aboveleft vnew   : split left
-			-- Only valid when using a float window
-			-- (i.e. when 'split' is not defined, default)
-			height     = 0.85, -- window height
-			width      = 0.80, -- window width
-			row        = 0.35, -- window row position (0=top, 1=bottom)
-			col        = 0.50, -- window col position (0=left, 1=right)
-			-- border argument passthrough to nvim_open_win(), also used
-			-- to manually draw the border characters around the preview
-			-- window, can be set to 'false' to remove all borders or to
-			-- 'none', 'single', 'double', 'thicc' or 'rounded' (default)
-			border     = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
-			fullscreen = false, -- start fullscreen?
-			hl         = {
-				normal     = 'Normal', -- window normal color (fg+bg)
-				border     = 'Normal', -- border color (try 'FloatBorder')
-				-- Only valid with the builtin previewer:
-				cursor     = 'Cursor', -- cursor highlight (grep/LSP matches)
-				cursorline = 'CursorLine', -- cursor line
-				search     = 'Search', -- search matches (ctags)
-				-- title       = 'Normal',        -- preview border title (file/buffer)
-				-- scrollbar_f = 'PmenuThumb',    -- scrollbar "full" section highlight
-				-- scrollbar_e = 'PmenuSbar',     -- scrollbar "empty" section highlight
-			},
-			preview    = {
-				-- default     = 'bat',           -- override the default previewer?
-				-- default uses the 'builtin' previewer
-				border       = 'border', -- border|noborder, applies only to
-				-- native fzf previewers (bat/cat/git/etc)
-				wrap         = 'nowrap', -- wrap|nowrap
-				hidden       = 'nohidden', -- hidden|nohidden
-				vertical     = 'down:45%', -- up|down:size
-				horizontal   = 'right:60%', -- right|left:size
-				layout       = 'flex', -- horizontal|vertical|flex
-				flip_columns = 120, -- #cols to switch to horizontal on flex
-				-- Only valid with the builtin previewer:
-				title        = true, -- preview border title (file/buf)?
-				scrollbar    = 'float', -- `false` or string:'float|border'
-				-- float:  in-window floating border
-				-- border: in-border chars (see below)
-				scrolloff    = '-2', -- float scrollbar offset from right
-				-- applies only when scrollbar = 'float'
-				scrollchars  = { '█', '' }, -- scrollbar chars ({ <full>, <empty> }
-				-- applies only when scrollbar = 'border'
-				delay        = 100, -- delay(ms) displaying the preview
-				-- prevents lag on fast scrolling
-				winopts      = { -- builtin previewer window options
-					number         = true,
-					relativenumber = false,
-					cursorline     = true,
-					cursorlineopt  = 'both',
-					cursorcolumn   = false,
-					signcolumn     = 'no',
-					list           = false,
-					foldenable     = false,
-					foldmethod     = 'manual',
-				},
-			},
-			on_create  = function()
-				-- called once upon creation of the fzf main window
-				-- can be used to add custom fzf-lua mappings, e.g:
-				--   vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", "<Down>",
-				--     { silent = true, noremap = true })
-			end,
-		},
-		-- provider setup
-		files               = {
-			-- previewer      = "bat",          -- uncomment to override previewer
-			-- (name from 'previewers' table)
-			-- set to 'false' to disable
-			prompt       = 'Files❯ ',
-			multiprocess = true, -- run command in a separate process
-			git_icons    = true, -- show git icons?
-			file_icons   = true, -- show file icons?
-			color_icons  = true, -- colorize file|git icons
-			-- path_shorten   = 1,              -- 'true' or number, shorten path?
-			-- executed command priority is 'cmd' (if exists)
-			-- otherwise auto-detect prioritizes `fd`:`rg`:`find`
-			-- default options are controlled by 'fd|rg|find|_opts'
-			-- NOTE: 'find -printf' requires GNU find
-			-- cmd            = "find . -type f -printf '%P\n'",
-			find_opts    = [[-type f -not -path '*/\.git/*' -printf '%P\n' --no-messages]],
-			rg_opts      = "--color=never --files --hidden --follow -g '!.git'",
-			fd_opts      = "--color=never --type f --hidden --follow --exclude .git --no-messages",
-			actions      = {
-				-- inherits from 'actions.files', here we can override
-				-- or set bind to 'false' to disable a default action
-				["default"] = actions.file_edit,
-				-- custom actions are available too
-				["ctrl-y"]  = function(selected) print(selected[1]) end,
-			}
-		},
-	}
+	
 
 	require 'nvim-treesitter.configs'.setup {
 		-- A list of parser names, or "all"
@@ -420,7 +319,8 @@ return require('packer').startup(function()
 	require('onedark').load()
 	require('nvim-autopairs').setup {}
 	require('toggleterm').setup {}
-	require('nvim-lsp-installer').setup {}
+	require("nvim-lsp-installer").setup({})
+
 	local lspconfig = require('lspconfig')
 	lspconfig.pyright.setup {
 		capabilities = capabilities,
@@ -431,6 +331,7 @@ return require('packer').startup(function()
 		--[[on_attach = on_attach]]
 	--[[}]]
 	lspconfig.sumneko_lua.setup {
+		filetypes = { "lua" },
 		capabilities = capabilities,
 		on_attach = on_attach
 	}
