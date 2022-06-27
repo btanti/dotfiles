@@ -19,8 +19,9 @@ snippet notes "notes template" b
 \usepackage{pdfpages}
 \usepackage{transparent}
 \usepackage{enumitem}
+\usepackage{fancyvrb}
 \usepackage{hyperref}
-
+\usepackage{booktabs}
 \newcommand{\incfig}[1]{%
     \def\svgwidth{\columnwidth}
     \import{./figures/}{#1.pdf_tex}
@@ -30,7 +31,7 @@ snippet notes "notes template" b
 \usepackage{psfrag}
 \usepackage{amsmath,amsfonts,graphicx}
 \usepackage{amssymb}
-\usepackage{cleverref}
+\usepackage{cleveref}
 \usepackage{tikz}
 \usepackage{mathtools}
 \usepackage{bbm}
@@ -54,6 +55,7 @@ snippet notes "notes template" b
 
  \newcounter{lecnum}
 
+\newcommand{\mnp}[2][python]{\mintinline{#1}{#2}}
 \newenvironment{dtaques}[1][]{%
 \stepcounter{theo}%
 \ifstrempty{#1}%

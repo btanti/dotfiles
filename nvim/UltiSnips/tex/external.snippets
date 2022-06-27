@@ -31,12 +31,16 @@ endsnippet
 
 ### cleverref ###
 
-snippet ref "cleverref" A
+snippet crf "cleverref" A
 \cref{${1:${VISUAL}}}
 endsnippet
 
-snippet Ref "cleverref capital" A
+snippet Crf "cleverref capital" A
 \Cref{${1:${VISUAL}}}
+endsnippet
+
+snippet vrb "fancyvrb verbatim" A
+\Verb+${1:${VISUAL}}+$0
 endsnippet
 
 ### tikz ###
@@ -73,8 +77,8 @@ $0
 \end{minted}
 endsnippet
 
-snippet mp "python minted inline" 
-\mnp{$0}
+snippet mp "python minted inline" A
+\mnp{$1}$0
 endsnippet
 
 ### todonotes ###

@@ -180,6 +180,7 @@ snippet mcal "mathcal" iA
 \mathcal{$1}$0
 endsnippet
 
+context "math()"
 snippet lll "l" iA
 \ell
 endsnippet
@@ -194,6 +195,7 @@ snippet xx "cross" iA
 \times 
 endsnippet
 
+context "math()"
 priority 100
 snippet ** "cdot" iA
 \cdot 
@@ -263,7 +265,7 @@ snippet << "<<" iA
 \ll
 endsnippet
 
-
+context "math()"
 snippet ~~ "~" iA
 \sim 
 endsnippet
@@ -357,30 +359,37 @@ snippet tt "text" iA
 \text{$1}$0
 endsnippet
 
+context "math()"
 snippet lr "left( right)" i
 \left( ${1:${VISUAL}} \right) $0
 endsnippet
 
+context "math()"
 snippet lr( "left( right)" i
 \left( ${1:${VISUAL}} \right) $0
 endsnippet
 
+context "math()"
 snippet lr| "left| right|" i
 \left| ${1:${VISUAL}} \right| $0
 endsnippet
 
+context "math()"
 snippet lr{ "left\{ right\}" i
 \left\\{ ${1:${VISUAL}} \right\\} $0
 endsnippet
 
+context "math()"
 snippet lrb "left\{ right\}" i
 \left\\{ ${1:${VISUAL}} \right\\} $0
 endsnippet
 
+context "math()"
 snippet lr[ "left[ right]" i
 \left[ ${1:${VISUAL}} \right] $0
 endsnippet
 
+context "math()"
 snippet lra "leftangle rightangle" iA
 \left<${1:${VISUAL}} \right>$0
 endsnippet
@@ -390,27 +399,32 @@ snippet conj "conjugate" iA
 \overline{$1}$0
 endsnippet
 
-
+context "math()"
 snippet sum "sum" w
 \sum_{$1}^{$2} $3
 endsnippet
 
+context "math()"
 snippet taylor "taylor" w
 \sum_{${1:k}=${2:0}}^{${3:\infty}} ${4:c_$1} (x-a)^$1 $0
 endsnippet
 
+context "math()"
 snippet lim "limit" w
 \lim_{${1:n} \to ${2:\infty}} 
 endsnippet
 
+context "math()"
 snippet limsup "limsup" w
 \limsup_{${1:n} \to ${2:\infty}} 
 endsnippet
 
+context "math()"
 snippet prod "product" w
 \prod_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}} $0
 endsnippet
 
+context "math()"
 snippet part "d/dx" w
 \frac{\partial ${1:V}}{\partial ${2:x}} $0
 endsnippet
@@ -452,10 +466,12 @@ snippet rij "mrij" i
 (${1:x}_${2:n})_{${3:$2}\\in${4:\\N}}$0
 endsnippet
 
+context "math()"
 snippet <= "leq" iA
 \le 
 endsnippet
 
+context "math()"
 snippet >= "geq" iA
 \ge 
 endsnippet
@@ -524,10 +540,12 @@ snippet () "left( right)" iA
 \left( ${1:${VISUAL}} \right) $0
 endsnippet
 
+context "math()"
 snippet == "equals" iA
 &= $1 \\\\
 endsnippet
 
+context "math()"
 snippet != "equals" iA
 \neq 
 endsnippet
@@ -542,10 +560,12 @@ snippet floor "floor" iA
 \left\lfloor $1 \right\rfloor$0
 endsnippet
 
+context "math()"
 snippet pmat "pmat" iA
 \begin{pmatrix} $1 \end{pmatrix} $0
 endsnippet
 
+context "math()"
 snippet bmat "bmat" iA
 \begin{bmatrix} $1 \end{bmatrix} $0
 endsnippet

@@ -7,6 +7,7 @@ return require('packer').startup(function()
 	-- Packer can manage itself
 	--
 	use 'neovim/nvim-lspconfig'
+	use 'untitled-ai/jupyter_ascending.vim'
 	use 'navarasu/onedark.nvim'
 	use 'dstein64/vim-startuptime'
 	use 'tpope/vim-surround'
@@ -224,7 +225,7 @@ return require('packer').startup(function()
 	use {
 		"folke/which-key.nvim",
 		config = function()
-			require("which-key").setup {}
+		   require('which-key').setup {} 
 		end
 	}
 	use {
@@ -368,7 +369,7 @@ return require('packer').startup(function()
 
 	require 'nvim-treesitter.configs'.setup {
 		-- A list of parser names, or "all"
-		ensure_installed = { "c", "lua", "rust", "python", "latex", "typescript" },
+		ensure_installed = { "c", "lua", "rust", "python", "typescript" },
 		-- Install parsers synchronously (only applied to `ensure_installed`)
 		sync_install = false,
 		-- List of parsers to ignore installing (for "all")

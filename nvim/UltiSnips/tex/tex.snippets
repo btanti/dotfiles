@@ -16,12 +16,17 @@ def create_table(snip):
 	offset = cols + 1
 	old_spacing = snip.buffer[snip.line][:snip.buffer[snip.line].rfind('\t') + 1]
 	snip.buffer[snip.line] = ''
-	final_str = old_spacing + "\\begin{tabular}{|" + "|".join(['$' + str(i + 1) for i in range(cols)]) + "|}\n"
+	final_str = old_spacing + "\\begin{table}[H]\n"
+	final_str += old_spacing + "\\centering\n"
+	final_str += old_spacing + "\\begin{tabular}{|" + "|".join(['$' + str(i + 1) for i in range(cols)]) + "|}\n"
+	final_str += old_spacing + "\\toprule\n"
 	for i in range(rows):
 		final_str += old_spacing + '\t'
 		final_str += " & ".join(['$' + str(i * cols + j + offset) for j in range(cols)])
 		final_str += " \\\\\\\n"
-	final_str += old_spacing + "\\end{tabular}\n$0"
+	final_str += old_spacing + "\\bottomrule\n"
+	final_str += old_spacing + "\\end{tabular}\n"
+	final_str += old_spacing + "\\end{table}\n$0"
 	snip.expand_anon(final_str)
 def add_row(snip):
 	row_len = int(''.join(s for s in snip.buffer[snip.line] if s.isdigit()))

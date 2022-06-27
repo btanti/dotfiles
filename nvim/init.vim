@@ -16,21 +16,35 @@ Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 call plug#end()
 
-" Key bindings can be changed, see below
+filetype plugin on
 
 " Leader key
 let mapleader=" "
 
+" better buffer cycling
+nnoremap <s-h> :bprevious<CR>
+nnoremap <s-l> :bnext<CR>
+
+" Time before keypress times out
+set timeoutlen=300
+
 " case-insensitive search
 set ignorecase
-"" telescope bindings
-"nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files({hidden = true})<cr>
-"nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-"nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-"nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-"nnoremap <leader>fr <cmd>lua require('telescope.builtin').lsp_references()<cr>
-"nnoremap <leader>fd <cmd>lua require('telescope.builtin').lsp_definitions()<cr>
-"nnoremap <leader>ft <cmd>lua require('telescope.builtin').lsp_type_definitions()<cr>
+
+" Line numbers on
+set number
+
+" ???
+set completeopt=menu,menuone,noselect
+
+" Spellchecker settings
+setlocal spell
+set spelllang=en_us
+
+" shifting lines
+set shiftround
+set shiftwidth=4
+
 
 " vim-test bindings
 nmap <silent> <leader>t :TestNearest<CR>
@@ -64,21 +78,42 @@ nnoremap <Leader>gb :Git branch<Space>
 nnoremap <Leader>go :Git checkout<Space>
 nnoremap <Leader>gps :Dispatch! git push<CR>
 nnoremap <Leader>gpl :Dispatch! git pull<CR>
+
+" clear search highlighting
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
 " vim switching windows
 map <Leader>j <C-w>j
 map <Leader>k <C-w>k
 map <Leader>h <c-w>h
 map <Leader>l <c-w>l
 
+" By applying the mappings this way you can pass a count to your
+" mapping to open a specific window.
+" For example: 2<C-t> will open terminal 2
+nnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
+inoremap <silent><c-t> <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>
+
+" vim buffer management
+nnoremap <leader>b :buffers<cr>:b<space> 
 
 " inkscape-figure-manager bindings
 inoremap <C-f> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
 nnoremap <C-f> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
 
-" Line numbers on
-set number
+" Toggleterm settings
+autocmd TermEnter term://*toggleterm#*
+      \ tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
 
-" Visual candy
+
+augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+augroup end
+
+" jupyter notebook autocmd
+"au BufReadPost,BufNewFile \(*\).sync.py exe v:count1 . 'ToggleTerm" | dir=getcwd() | TermExec cmd ="jupyter notebook example.sync.ipynb"
+au BufReadPost,BufNewFile \(*\).sync.py let file=expand("%") | exe v:count1 . 'ToggleTerm' | let dir_str=getcwd() | exe 'TermExec cmd="conda activate rl-camd"' | exe 'TermExec cmd="jupyter notebook '.substitute(file, '\(.\).sync.py', '\1.sync.ipynb', '').'"'
 
 " remap exiting terminal mode to normal
 if has('nvim')
@@ -95,8 +130,8 @@ let g:vimtex_compiler_latexmk = {
     \    '-interaction=nonstopmode',
     \ ],
     \}
-imap jk <Esc>
-"let g:vimtex_view_general_viewer = 'zathura'
+" Set below if you would like to use a different pdf viewer
+"let g:vimtex_view_general_viewer = 'okular'
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
  set hidden
@@ -109,40 +144,12 @@ let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
    endif
 let g:doge_doc_standard_python = 'google'
 
-
-" By applying the mappings this way you can pass a count to your
-" mapping to open a specific window.
-" For example: 2<C-t> will open terminal 2
-filetype plugin on
-
 " UltiSnips snippet directories
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']          " using Vim
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']  " using Neovim
 
-" Spellchecker settings
-setlocal spell
-set spelllang=en_us
-
-" ???
-inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
-
-" ???
-set completeopt=menu,menuone,noselect
-
-" Toggleterm settings
-autocmd TermEnter term://*toggleterm#*
-      \ tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
-
-" By applying the mappings this way you can pass a count to your
-" mapping to open a specific window.
-" For example: 2<C-t> will open terminal 2
-nnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
-inoremap <silent><c-t> <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>
-
 
 lua <<EOF
-
-
 
 vim.diagnostic.config({
   virtual_text = false,
@@ -174,4 +181,13 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true }
 )
 
+
+require 'nvim-treesitter.configs'.setup {
+	ignore_install = { "latex" },
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = true
+		}
+-- more stuff here
+}
 EOF
