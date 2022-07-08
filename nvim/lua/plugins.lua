@@ -10,9 +10,11 @@ return require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
 	use 'lewis6991/impatient.nvim'
 	use 'neovim/nvim-lspconfig'
+	use 'dstein64/nvim-scrollview'
 	use 'untitled-ai/jupyter_ascending.vim'
 	use 'navarasu/onedark.nvim'
 	use 'dstein64/vim-startuptime'
+	use 'ludovicchabant/vim-gutentags'
 	use 'tpope/vim-surround'
 	use 'windwp/nvim-autopairs'
 	use 'hrsh7th/cmp-buffer'
@@ -21,12 +23,17 @@ return require('packer').startup(function()
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-cmdline'
 	use 'onsails/lspkind-nvim'
-	use 'hrsh7th/nvim-cmp'
+	use({
+	"hrsh7th/nvim-cmp",
+	requires = {
+	    { "jc-doyle/cmp-pandoc-references" }
+	}
+	})
 	use 'hrsh7th/cmp-nvim-lsp'
 	use("quangnguyen30192/cmp-nvim-ultisnips")
 	use "lukas-reineke/indent-blankline.nvim"
 	use "ray-x/lsp_signature.nvim"
-
+	
 	-- Setup nvim-cmp.
 	local cmp = require('cmp')
 	local lspkind = require('lspkind')
@@ -175,9 +182,10 @@ return require('packer').startup(function()
 	}
 
 	cmp.setup.filetype('tex', {
-		completion = {
-			autocomplete = false,
-		} })
+		sources = {
+		    { name = 'pandoc_references'}
+		}
+		} )
 
 	use {
 		{
@@ -317,6 +325,13 @@ return require('packer').startup(function()
 		},
 	}
 	require('onedark').load()
+	require('scrollview').setup({
+	    excluded_filetypes = {'nerdtree'},
+	    current_only = true,
+	    on_startup = true,
+	    winblend = 30,
+	    base = 'right',
+	})
 	require('nvim-autopairs').setup {}
 	require('toggleterm').setup {}
 	require("nvim-lsp-installer").setup({})

@@ -8,3 +8,5 @@
 	name = btanti
 [credential]
 	helper = store
+[safe]
+	directory = /home/bryan/ctags

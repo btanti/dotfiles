@@ -8,6 +8,8 @@ Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'lervag/vimtex'
     let g:tex_flavor='latex'
     let g:vimtex_quickfix_mode=0
+    let g:vimtex_syntax_enabled = 1
+    let g:vimtex_syntax_conceal_disable = 1
 "Plug 'KeitaNakamura/tex-conceal.vim'
     "set conceallevel=1
     "let g:tex_conceal='abdmg'
@@ -26,7 +28,7 @@ nnoremap <s-h> :bprevious<CR>
 nnoremap <s-l> :bnext<CR>
 
 " Time before keypress times out
-set timeoutlen=300
+set timeout timeoutlen=300
 
 " case-insensitive search
 set ignorecase
@@ -65,7 +67,8 @@ nnoremap gR <cmd>TroubleToggle lsp_references<cr>
 nnoremap <Leader>ga :Git add -v -- .<CR>
 nnoremap <Leader>gs :Git status<CR>
 nnoremap <Leader>gc :Git commit -v -q<CR>
-nnoremap <Leader>gp :Git push -v<CR>
+nnoremap <Leader>gps :Git push -v<CR>
+nnoremap <Leader>gpl :Git pull<CR>
 nnoremap <Leader>gt :Git commit -v -q %:p<CR>
 nnoremap <Leader>gd :Git diff<CR>
 nnoremap <Leader>ge :Gedit<CR>
@@ -75,8 +78,6 @@ nnoremap <Leader>gl :silent! Glog<CR>:bot copen<CR>
 nnoremap <Leader>gm :Gmove<Space>
 nnoremap <Leader>gb :Git branch<Space>
 nnoremap <Leader>go :Git checkout<Space>
-nnoremap <Leader>gps :Dispatch! git push<CR>
-nnoremap <Leader>gpl :Dispatch! git pull<CR>
 
 nnoremap zc :PackerCompile<cr>
 nnoremap zi :PackerInstall<cr>
@@ -109,6 +110,11 @@ nnoremap <C-f> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/
 autocmd TermEnter term://*toggleterm#*
       \ tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
 
+" remap exiting terminal mode to normal (useful for ToggleTerm)
+if has('nvim')
+  tmap <C-o> <C-\><C-n>
+endif
+
 augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
@@ -118,12 +124,7 @@ augroup end
 "au BufReadPost,BufNewFile \(*\).sync.py exe v:count1 . 'ToggleTerm" | dir=getcwd() | TermExec cmd ="jupyter notebook example.sync.ipynb"
 au BufReadPost,BufNewFile \(*\).sync.py let file=expand("%") | exe v:count1 . 'ToggleTerm' | let dir_str=getcwd() | exe 'TermExec cmd="conda activate rl-camd"' | exe 'TermExec cmd="jupyter notebook '.substitute(file, '\(.\).sync.py', '\1.sync.ipynb', '').'"'
 
-" remap exiting terminal mode to normal
-if has('nvim')
-  tmap <C-o> <C-\><C-n>
-endif
-
- lua require('plugins')
+lua require('plugins')
 let g:vimtex_compiler_latexmk = {
     \ 'options' : [
     \    '-shell-escape',
@@ -151,7 +152,9 @@ let g:doge_doc_standard_python = 'google'
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']          " using Vim
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']  " using Neovim
 
-
+" vim-gutentags settings
+let g:gutentags_project_root = ['Makefile']
+set statusline+=%{gutentags#statusline()}
 lua <<EOF
 
 vim.diagnostic.config({

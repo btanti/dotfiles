@@ -33,6 +33,7 @@ snippet // "Fraction" iA
 \\frac{$1}{$2}$0
 endsnippet
 
+context "math()"
 snippet / "Fraction" i
 \\frac{${VISUAL}}{$1}$0
 endsnippet
@@ -124,10 +125,12 @@ snip.rv = subprocess.check_output(['wolframscript', '-code', code])
 `
 endsnippet
 
+context "math()"
 snippet HH "H" iA
 \mathbb{H}
 endsnippet
 
+context "math()"
 snippet DD "D" iA
 \mathbb{D}
 endsnippet
@@ -136,6 +139,7 @@ snippet mbb "Mathbb" iA
 \mathbb{$1}$0
 endsnippet	
 
+context "math()"
 snippet bigfun "Big function" iA
 \begin{align*}
 	$1: $2 &\longrightarrow $3 \\\\
@@ -143,6 +147,7 @@ snippet bigfun "Big function" iA
 .\end{align*}
 endsnippet
 
+context "math()"
 snippet cvec "column vector" iA
 \begin{pmatrix} ${1:x}_${2:1}\\\\ \vdots\\\\ $1_${2:n} \end{pmatrix}
 endsnippet
@@ -257,10 +262,12 @@ snippet \\\ "setminus" iA
 \setminus
 endsnippet
 
+context "math()"
 snippet >> ">>" iA
 \gg
 endsnippet
 
+context "math()"
 snippet << "<<" iA
 \ll
 endsnippet
@@ -272,11 +279,12 @@ endsnippet
 
 context "math()"
 snippet set "set" wA
-\\{$1\\} $0
+\\{ ${1:${VISUAL}} \\} $0
 endsnippet
 
+context "math()"
 snippet || "mid" iA
- \mid 
+\mid 
 endsnippet
 
 
@@ -391,7 +399,7 @@ endsnippet
 
 context "math()"
 snippet lra "leftangle rightangle" iA
-\left<${1:${VISUAL}} \right>$0
+\left< ${1:${VISUAL}} \right>$0
 endsnippet
 
 context "math()"

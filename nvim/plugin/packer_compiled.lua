@@ -89,6 +89,11 @@ _G.packer_plugins = {
     path = "/home/bryan/.local/share/nvim/site/pack/packer/start/cmp-nvim-ultisnips",
     url = "https://github.com/quangnguyen30192/cmp-nvim-ultisnips"
   },
+  ["cmp-pandoc-references"] = {
+    loaded = true,
+    path = "/home/bryan/.local/share/nvim/site/pack/packer/start/cmp-pandoc-references",
+    url = "https://github.com/jc-doyle/cmp-pandoc-references"
+  },
   ["cmp-path"] = {
     loaded = true,
     path = "/home/bryan/.local/share/nvim/site/pack/packer/start/cmp-path",
@@ -155,6 +160,11 @@ _G.packer_plugins = {
     path = "/home/bryan/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-scrollview"] = {
+    loaded = true,
+    path = "/home/bryan/.local/share/nvim/site/pack/packer/start/nvim-scrollview",
+    url = "https://github.com/dstein64/nvim-scrollview"
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/bryan/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
@@ -197,6 +207,11 @@ _G.packer_plugins = {
     path = "/home/bryan/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
+  ["vim-gutentags"] = {
+    loaded = true,
+    path = "/home/bryan/.local/share/nvim/site/pack/packer/start/vim-gutentags",
+    url = "https://github.com/ludovicchabant/vim-gutentags"
+  },
   ["vim-startify"] = {
     loaded = true,
     path = "/home/bryan/.local/share/nvim/site/pack/packer/start/vim-startify",
@@ -234,14 +249,14 @@ time([[Config for nvim-lsp-installer]], false)
 time([[Config for trouble.nvim]], true)
 try_loadstring("\27LJ\2\0029\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
 time([[Config for trouble.nvim]], false)
--- Config for: toggleterm.nvim
-time([[Config for toggleterm.nvim]], true)
-try_loadstring("\27LJ\2\0028\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\15toggleterm\frequire\0", "config", "toggleterm.nvim")
-time([[Config for toggleterm.nvim]], false)
 -- Config for: which-key.nvim
 time([[Config for which-key.nvim]], true)
 try_loadstring("\27LJ\2\2;\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0", "config", "which-key.nvim")
 time([[Config for which-key.nvim]], false)
+-- Config for: toggleterm.nvim
+time([[Config for toggleterm.nvim]], true)
+try_loadstring("\27LJ\2\0028\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\15toggleterm\frequire\0", "config", "toggleterm.nvim")
+time([[Config for toggleterm.nvim]], false)
 if should_profile then save_profiles() end
 
 end)

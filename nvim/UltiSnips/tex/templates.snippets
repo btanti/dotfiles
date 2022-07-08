@@ -207,6 +207,8 @@ frametitleaboveskip=\dimexpr-\ht\strutbox\relax,}
 \date{\today}
 \listoftodos
 \todototoc
+
+$0
 \end{document}
 endsnippet
 
@@ -220,14 +222,15 @@ snippet notes2 "Notes template 2" b
 \usepackage{
 	amsmath,			% Math Environments
 	amssymb,			% Extended Symbols
-	amsthm,			    % Theorem Environments
-	cancel,			    % Use Cancels
-	enumerate,		    % Enumerate Environments
+	amsthm,			    	% Theorem Environments
+	cancel,			    	% Use Cancels
+	enumerate,		    	% Enumerate Environments
 	graphicx,			% Include Images
 	lastpage,			% Reference Lastpage
 	multicol,			% Use Multi-columns
 	multirow,			% Use Multi-rows
-	xcolor			    % Use Colors
+	xcolor,			    	% Use Colors
+	enumitem			& Use enumitem
 }
 
 
@@ -327,6 +330,11 @@ snippet notes2 "Notes template 2" b
 
 \pagestyle{pages}
 
+% -------------------
+% Other
+% -------------------
+\usepackage{float}
+\usepackage{graphicx}
 
 % -------------------
 % Content

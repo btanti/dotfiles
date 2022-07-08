@@ -215,8 +215,8 @@ bindsym $mod+Shift+n exec "kitty -e nvim ~/Documents/notes"; focus
 bindsym $mod+Shift+s exec ~/.dotfiles/i3/scripts/daily_note.sh &; focus
 
 # open ide layout
-bindsym $mod+c exec ~/.dotfiles/i3/scripts/ide.sh
-bindsym $mod+p exec ~/.dotfiles/i3/scripts/ide.sh ~/research
+# bindsym $mod+c exec ~/.dotfiles/i3/scripts/ide.sh
+# bindsym $mod+p exec ~/.dotfiles/i3/scripts/ide.sh ~/research
 
 for_window [instance=scratch] floating enable
 for_window [instance=scratch] [floating] resize set 640 480
@@ -229,9 +229,9 @@ workspace 4 output HDMI-0
 workspace 5 output DP-0
 
 # Screenshots
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
+bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date '+%Y-%m-%d').png"
 bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
-bindsym Ctrl+Shift+5 exec --no-startup-id maim --select -o "/home/$USER/Pictures/$(date)"
+bindsym Ctrl+Shift+5 exec --no-startup-id maim --select -o "/home/$USER/Pictures/$(date '+%Y-%m-%d-T-%h:%m:%s')"
 
 ## Clipboard Screenshots
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
