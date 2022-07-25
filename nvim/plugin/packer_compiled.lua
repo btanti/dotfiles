@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/home/bryan/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
     url = "https://github.com/hrsh7th/cmp-cmdline"
   },
+  ["cmp-ctags"] = {
+    loaded = true,
+    path = "/home/bryan/.local/share/nvim/site/pack/packer/start/cmp-ctags",
+    url = "https://github.com/delphinus/cmp-ctags"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/bryan/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -233,7 +238,7 @@ _G.packer_plugins = {
     url = "https://github.com/vim-test/vim-test"
   },
   ["which-key.nvim"] = {
-    config = { "\27LJ\2\2;\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0" },
+    config = { "\27LJ\2\2=\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20config.whichkey\frequire\0" },
     loaded = true,
     path = "/home/bryan/.local/share/nvim/site/pack/packer/start/which-key.nvim",
     url = "https://github.com/folke/which-key.nvim"
@@ -251,7 +256,7 @@ try_loadstring("\27LJ\2\0029\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\
 time([[Config for trouble.nvim]], false)
 -- Config for: which-key.nvim
 time([[Config for which-key.nvim]], true)
-try_loadstring("\27LJ\2\2;\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0", "config", "which-key.nvim")
+try_loadstring("\27LJ\2\2=\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20config.whichkey\frequire\0", "config", "which-key.nvim")
 time([[Config for which-key.nvim]], false)
 -- Config for: toggleterm.nvim
 time([[Config for toggleterm.nvim]], true)

@@ -9,6 +9,7 @@
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	5.9.0	//
+%%	nvim/init.vim	/^cnoremap %% <C-R>=fnameescape(expand('%:h')).'\/'<cr>$/;"	m
 .codicon-account:before	nvim/lua/node_modules/@vscode/codicons/dist/codicon.css	/^.codicon-account:before { content: "\\eb99" }$/;"	c
 .codicon-activate-breakpoints:before	nvim/lua/node_modules/@vscode/codicons/dist/codicon.css	/^.codicon-activate-breakpoints:before { content: "\\ea97" }$/;"	c
 .codicon-add:before	nvim/lua/node_modules/@vscode/codicons/dist/codicon.css	/^.codicon-add:before { content: "\\ea60" }$/;"	c
@@ -639,11 +640,10 @@
 <c-t>	nvim/init.vim	/^inoremap <silent><c-t> <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>$/;"	m
 <c-t>	nvim/init.vim	/^nnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>$/;"	m
 <leader>b	nvim/init.vim	/^nnoremap <leader>b :buffers<cr>:b<space> $/;"	m
-<leader>tT	nvim/init.vim	/^nmap <silent> <leader>tT :TestFile<CR>$/;"	m
-<leader>ta	nvim/init.vim	/^nmap <silent> <leader>ta :TestSuite<CR>$/;"	m
-<leader>tg	nvim/init.vim	/^nmap <silent> <leader>tg :TestVisit<CR>$/;"	m
-<leader>tl	nvim/init.vim	/^nmap <silent> <leader>tl :TestLast<CR>$/;"	m
-<leader>tt	nvim/init.vim	/^nmap <silent> <leader>tt :TestNearest<CR>$/;"	m
+<leader>es	nvim/init.vim	/^map <leader>es :sp %%$/;"	m
+<leader>et	nvim/init.vim	/^map <leader>et :tabe %%$/;"	m
+<leader>ev	nvim/init.vim	/^map <leader>ev :vsp %%$/;"	m
+<leader>ew	nvim/init.vim	/^map <leader>ew :e %%$/;"	m
 <leader>xd	nvim/init.vim	/^nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>$/;"	m
 <leader>xl	nvim/init.vim	/^nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>$/;"	m
 <leader>xq	nvim/init.vim	/^nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>$/;"	m
@@ -2201,7 +2201,8 @@ error_msg	nvim/plugin/packer_compiled.lua	/^local no_errors, error_msg = pcall(f
 exclude	nvim/lua/node_modules/@vscode/codicons/dist/codicon.svg	/^<?xml version="1.0" encoding="utf-8"?><svg xmlns="http:\/\/www.w3.org\/2000\/svg" xmlns:xlink="h/;"	i
 exclude	nvim/lua/node_modules/@vscode/codicons/src/template/mapping.json	/^  "exclude": 60133,$/;"	n
 exclude	picom.conf	/^blur-background-exclude = [$/;"	k
-exclude	picom.conf	/^fade-exclude: [ "class_g = 'rofi'"];$/;"	k
+exclude	picom.conf	/^fade-exclude: [ "class_g != 'rofi'"];$/;"	k
+exclude	picom.conf	/^shadow-exclude: [ "class_g = 'slop'" ];$/;"	k
 execute	dotbot/lib/pyyaml/tests/lib/test_appliance.py	/^def execute(function, filenames, verbose):$/;"	f
 execute	dotbot/lib/pyyaml/tests/lib/test_constructor.py	/^def execute(code):$/;"	f
 execute	dotbot/lib/pyyaml/tests/lib3/test_appliance.py	/^def execute(function, filenames, verbose):$/;"	f
@@ -2470,6 +2471,10 @@ g:UltiSnipsSnippetDirectories	nvim/init.vim	/^let g:UltiSnipsSnippetDirectories=
 g:UltiSnipsSnippetDirectories	nvim/init.vim	/^let g:UltiSnipsSnippetDirectories=[$HOME.'\/.vim\/UltiSnips']          " using Vim$/;"	v
 g:doge_doc_standard_python	nvim/init.vim	/^let g:doge_doc_standard_python = 'google'$/;"	v
 g:gutentags_project_root	nvim/init.vim	/^let g:gutentags_project_root = ['Makefile']$/;"	v
+g:startify_bookmarks	nvim/init.vim	/^let g:startify_bookmarks = [ {'h': '~\/Documents\/notes\/optimization\/convex\/hw\/'}, {'r': '~\//;"	v
+g:startify_lists	nvim/init.vim	/^let g:startify_lists = [$/;"	v
+g:startify_session_autoload	nvim/init.vim	/^let g:startify_session_autoload = 1$/;"	v
+g:startify_session_persistence	nvim/init.vim	/^let g:startify_session_persistence = 1$/;"	v
 g:tex_flavor	nvim/init.vim	/^    let g:tex_flavor='latex'$/;"	v
 g:vimtex_compiler_latexmk	nvim/init.vim	/^let g:vimtex_compiler_latexmk = {$/;"	v
 g:vimtex_quickfix_mode	nvim/init.vim	/^    let g:vimtex_quickfix_mode=0$/;"	v
@@ -4584,7 +4589,7 @@ settings	nvim/lua/node_modules/@vscode/codicons/dist/codicon.svg	/^<?xml version
 settings	nvim/lua/node_modules/@vscode/codicons/src/template/mapping.json	/^  "settings": 60242,$/;"	n
 settings-gear	nvim/lua/node_modules/@vscode/codicons/dist/codicon.svg	/^<?xml version="1.0" encoding="utf-8"?><svg xmlns="http:\/\/www.w3.org\/2000\/svg" xmlns:xlink="h/;"	i
 settings-gear	nvim/lua/node_modules/@vscode/codicons/src/template/mapping.json	/^  "settings-gear": 60241,$/;"	n
-setup	nvim/lua/whichkey.lua	/^function M.setup()$/;"	f	unknown:M
+setup	nvim/lua/config/whichkey.lua	/^function M.setup()$/;"	f	unknown:M
 shadow	picom.conf	/^shadow = true;$/;"	k
 shaped	picom.conf	/^shadow-ignore-shaped = false;$/;"	k
 shell_command	dotbot/dotbot/util/common.py	/^def shell_command(command, cwd=None, enable_stdin=False, enable_stdout=False, enable_stderr=Fals/;"	f
@@ -4728,7 +4733,7 @@ tableSpecifier	nvim/lua/node_modules/@vscode/codicons/_iconCloud/keywords.variab
 tableSpecifier	nvim/lua/node_modules/@vscode/codicons/_iconCloud/manifest.variables.json	/^    "tableSpecifier": {$/;"	o	object:4
 tag	nvim/lua/node_modules/@vscode/codicons/dist/codicon.svg	/^<?xml version="1.0" encoding="utf-8"?><svg xmlns="http:\/\/www.w3.org\/2000\/svg" xmlns:xlink="h/;"	i
 tag	nvim/lua/node_modules/@vscode/codicons/src/template/mapping.json	/^  "tag": 60006,$/;"	n
-tag	nvim/lua/plugins.lua	/^	use { "akinsho\/toggleterm.nvim", tag = 'v1.*', config = function()$/;"	f
+tag	nvim/lua/plugins.lua	/^	use { "akinsho\/toggleterm.nvim", tag = 'v2.*', config = function()$/;"	f
 tag-add	nvim/lua/node_modules/@vscode/codicons/dist/codicon.svg	/^<?xml version="1.0" encoding="utf-8"?><svg xmlns="http:\/\/www.w3.org\/2000\/svg" xmlns:xlink="h/;"	i
 tag-add	nvim/lua/node_modules/@vscode/codicons/src/template/mapping.json	/^  "tag-add": 60006,$/;"	n
 tag-remove	nvim/lua/node_modules/@vscode/codicons/dist/codicon.svg	/^<?xml version="1.0" encoding="utf-8"?><svg xmlns="http:\/\/www.w3.org\/2000\/svg" xmlns:xlink="h/;"	i

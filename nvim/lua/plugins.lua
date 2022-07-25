@@ -9,6 +9,7 @@ return require('packer').startup(function()
 	--
 	use 'wbthomason/packer.nvim'
 	use 'lewis6991/impatient.nvim'
+	use 'delphinus/cmp-ctags'
 	use 'neovim/nvim-lspconfig'
 	use 'dstein64/nvim-scrollview'
 	use 'untitled-ai/jupyter_ascending.vim'
@@ -74,7 +75,6 @@ return require('packer').startup(function()
 		vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
 		vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
 		vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-		vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 	end
 
 	cmp.setup({
@@ -112,6 +112,15 @@ return require('packer').startup(function()
 			{ name = 'buffer' },
 		})
 	})
+
+	cmp.setup.filetype('tex', {
+		sources = {
+		    { name = 'pandoc_references'}
+		}, {
+		    {name = 'ctags'},
+		}
+		})
+
 
 	-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 	cmp.setup.cmdline('/', {
@@ -181,11 +190,6 @@ return require('packer').startup(function()
 		toggle_key = nil -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
 	}
 
-	cmp.setup.filetype('tex', {
-		sources = {
-		    { name = 'pandoc_references'}
-		}
-		} )
 
 	use {
 		{
@@ -236,7 +240,7 @@ return require('packer').startup(function()
 	use {
 		"folke/which-key.nvim",
 		config = function()
-		   require('which-key').setup {} 
+		   require('config.whichkey').setup()
 		end
 	}
 	use {
@@ -250,7 +254,7 @@ return require('packer').startup(function()
 	use 'preservim/nerdcommenter'
 	use 'mhinz/vim-startify'
 	use 'itchyny/lightline.vim'
-	use { "akinsho/toggleterm.nvim", tag = 'v1.*', config = function()
+	use { "akinsho/toggleterm.nvim", tag = 'v2.*', config = function()
 		require("toggleterm").setup()
 	end
 	}
@@ -299,7 +303,6 @@ return require('packer').startup(function()
 		ending_tildes = false, -- Show the end-of-buffer tildes. By default they are hidden
 		cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
 		-- toggle theme style ---
-		toggle_style_key = '<leader>ts', -- Default keybinding to toggle
 		toggle_style_list = { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }, -- List of styles to toggle between
 
 		-- Change code style ---
@@ -333,7 +336,6 @@ return require('packer').startup(function()
 	    base = 'right',
 	})
 	require('nvim-autopairs').setup {}
-	require('toggleterm').setup {}
 	require("nvim-lsp-installer").setup({})
 
 	local lspconfig = require('lspconfig')

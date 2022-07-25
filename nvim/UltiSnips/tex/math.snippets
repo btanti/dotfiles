@@ -80,7 +80,7 @@ endsnippet
 snippet lem "Lemma" bA
 \begin{lemma}
 	$0
-end{lemma}
+\end{lemma}
 endsnippet
 
 snippet thm "Theorem" bA
@@ -137,7 +137,11 @@ endsnippet
 
 snippet mbb "Mathbb" iA
 \mathbb{$1}$0
-endsnippet	
+endsnippet
+
+snippet bp "big paren" iA
+\bigg ( $1 \bigg) $0
+endsnippet
 
 context "math()"
 snippet bigfun "Big function" iA
@@ -239,7 +243,7 @@ endsnippet
 priority 200
 context "math()"
 snippet <-> "leftrightarrow" iA
-\Leftrightarrow 
+\Leftrightarrow  
 endsnippet
 
 context "math()"
@@ -439,7 +443,7 @@ endsnippet
 
 context "math()"
 snippet sq "\sqrt{}" iA
-\sqrt{${1:${VISUAL}}} $0
+\sqrt{${1:${VISUAL}}}
 endsnippet
 
 context "math()"
@@ -540,7 +544,7 @@ snippet R0+ "R0+" iA
 endsnippet
 
 snippet rarw "right arrow" iA
-\rightarrow
+\rightarrow 
 endsnippet
 
 context "math()"

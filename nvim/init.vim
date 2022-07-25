@@ -10,10 +10,6 @@ Plug 'lervag/vimtex'
     let g:vimtex_quickfix_mode=0
     let g:vimtex_syntax_enabled = 1
     let g:vimtex_syntax_conceal_disable = 1
-"Plug 'KeitaNakamura/tex-conceal.vim'
-    "set conceallevel=1
-    "let g:tex_conceal='abdmg'
-    "hi Conceal ctermbg=none
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 call plug#end()
@@ -48,11 +44,11 @@ set shiftround
 set shiftwidth=4
 
 " vim-test bindings
-nmap <silent> <leader>tt :TestNearest<CR>
-nmap <silent> <leader>tT :TestFile<CR>
-nmap <silent> <leader>ta :TestSuite<CR>
-nmap <silent> <leader>tl :TestLast<CR>
-nmap <silent> <leader>tg :TestVisit<CR>
+"nmap <silent> <leader>tt :TestNearest<CR>
+"nmap <silent> <leader>tT :TestFile<CR>
+"nmap <silent> <leader>ta :TestSuite<CR>
+"nmap <silent> <leader>tl :TestLast<CR>
+"nmap <silent> <leader>tg :TestVisit<CR>
 let test#python#runner = 'pytest'
 
 " trouble bindings
@@ -86,6 +82,13 @@ nnoremap zS :PackerStatus<cr>
 nnoremap zu :PackerUpdate<cr>
 " clear search highlighting
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
+" expand to cwd
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+map <leader>et :tabe %%
 
 " vim switching windows
 map <Leader>j <C-w>j
@@ -155,6 +158,19 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']  " using Neo
 " vim-gutentags settings
 let g:gutentags_project_root = ['Makefile']
 set statusline+=%{gutentags#statusline()}
+
+" startify settings
+let g:startify_bookmarks = [ {'h': '~/Documents/notes/optimization/convex/hw/'}, {'r': '~/research/'}]
+let g:startify_session_autoload = 1
+let g:startify_session_persistence = 1
+let g:startify_lists = [
+          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          \ { 'type': 'files',     'header': ['   MRU']            },
+          \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
+          \ { 'type': 'commands',  'header': ['   Commands']       },
+          \ ]
+
 lua <<EOF
 
 vim.diagnostic.config({
@@ -171,19 +187,19 @@ vim.diagnostic.config({
 
 -- Show all diagnostics on current line in floating window
 vim.api.nvim_set_keymap(
-  'n', '<Leader>e', ':lua vim.diagnostic.open_float()<CR>', 
+  'n', '<Leader>fe', ':lua vim.diagnostic.open_float()<CR>', 
   { noremap = true, silent = true }
 )
 -- Go to next diagnostic (if there are multiple on the same line, only shows
 -- one at a time in the floating window)
 vim.api.nvim_set_keymap(
-  'n', '<Leader>n', ':lua vim.diagnostic.goto_next()<CR>',
+  'n', '<Leader>fn', ':lua vim.diagnostic.goto_next()<CR>',
   { noremap = true, silent = true }
 )
 -- Go to prev diagnostic (if there are multiple on the same line, only shows
 -- one at a time in the floating window)
 vim.api.nvim_set_keymap(
-  'n', '<Leader>p', ':lua vim.diagnostic.goto_prev()<CR>',
+  'n', '<Leader>fp', ':lua vim.diagnostic.goto_prev()<CR>',
   { noremap = true, silent = true }
 )
 

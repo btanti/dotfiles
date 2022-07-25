@@ -198,7 +198,7 @@ bindsym $mod+r mode "resize"
 
 # use polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh --panels &
-exec_always --no-startup-id picom --experimental-backends &
+exec_always --no-startup-id picom --experimental-backends -b
 exec_always --no-startup-id redshift -l 40.7:74.a 
 exec_always --no-startup-id ~/.dotfiles/i3/scripts/wallpaper.sh
 exec_always --no-startup-id ~/.dotfiles/i3/scripts/monitor.sh
@@ -214,10 +214,6 @@ bindsym $mod+Shift+n exec "kitty -e nvim ~/Documents/notes"; focus
 # open nvim as scratchpad
 bindsym $mod+Shift+s exec ~/.dotfiles/i3/scripts/daily_note.sh &; focus
 
-# open ide layout
-# bindsym $mod+c exec ~/.dotfiles/i3/scripts/ide.sh
-# bindsym $mod+p exec ~/.dotfiles/i3/scripts/ide.sh ~/research
-
 for_window [instance=scratch] floating enable
 for_window [instance=scratch] [floating] resize set 640 480
 for_window [instance=scratch] move absolute position center
@@ -231,9 +227,9 @@ workspace 5 output DP-0
 # Screenshots
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date '+%Y-%m-%d').png"
 bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
-bindsym Ctrl+Shift+5 exec --no-startup-id maim --select -o "/home/$USER/Pictures/$(date '+%Y-%m-%d-T-%h:%m:%s')"
+bindsym Ctrl+Shift+5 exec --no-startup-id maim --select -o "/home/$USER/Pictures/$(date '+%FT%T').png"
 
 ## Clipboard Screenshots
-bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
-bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+3 exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+4 exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
 bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
