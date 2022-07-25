@@ -2474,6 +2474,7 @@ g:gutentags_project_root	nvim/init.vim	/^let g:gutentags_project_root = ['Makefi
 g:startify_bookmarks	nvim/init.vim	/^let g:startify_bookmarks = [ {'h': '~\/Documents\/notes\/optimization\/convex\/hw\/'}, {'r': '~\//;"	v
 g:startify_lists	nvim/init.vim	/^let g:startify_lists = [$/;"	v
 g:startify_session_autoload	nvim/init.vim	/^let g:startify_session_autoload = 1$/;"	v
+g:startify_session_dir	nvim/init.vim	/^let g:startify_session_dir = '~\/.config\/nvim\/session'$/;"	v
 g:startify_session_persistence	nvim/init.vim	/^let g:startify_session_persistence = 1$/;"	v
 g:tex_flavor	nvim/init.vim	/^    let g:tex_flavor='latex'$/;"	v
 g:vimtex_compiler_latexmk	nvim/init.vim	/^let g:vimtex_compiler_latexmk = {$/;"	v

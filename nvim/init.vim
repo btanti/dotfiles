@@ -161,6 +161,7 @@ set statusline+=%{gutentags#statusline()}
 
 " startify settings
 let g:startify_bookmarks = [ {'h': '~/Documents/notes/optimization/convex/hw/'}, {'r': '~/research/'}]
+let g:startify_session_dir = '~/.config/nvim/session'
 let g:startify_session_autoload = 1
 let g:startify_session_persistence = 1
 let g:startify_lists = [

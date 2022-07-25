@@ -8,7 +8,10 @@ return require('packer').startup(function()
 	--
 	--
 	use 'wbthomason/packer.nvim'
+	use 'rcarriga/nvim-notify'
 	use 'lewis6991/impatient.nvim'
+	use 'nvim-lua/plenary.nvim'
+	use 'MunifTanjim/nui.nvim'
 	use 'delphinus/cmp-ctags'
 	use 'neovim/nvim-lspconfig'
 	use 'dstein64/nvim-scrollview'
@@ -62,10 +65,10 @@ return require('packer').startup(function()
 		-- See `:help vim.lsp.*` for documentation on any of the below functions
 		local bufopts = { noremap = true, silent = true, buffer = bufnr }
 		vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+		vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
 		vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
 		vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
 		vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-		vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
 		vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
 		vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
 		vim.keymap.set('n', '<space>wl', function()
@@ -187,7 +190,7 @@ return require('packer').startup(function()
 		shadow_blend = 36, -- if you using shadow as border use this set the opacity
 		shadow_guibg = 'Black', -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
 		timer_interval = 200, -- default timer check interval set to lower value if you want to reduce latency
-		toggle_key = nil -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
+		toggle_key = '<C-k>' -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
 	}
 
 
@@ -337,7 +340,7 @@ return require('packer').startup(function()
 	})
 	require('nvim-autopairs').setup {}
 	require("nvim-lsp-installer").setup({})
-
+	require("lsp_signature").setup(cfg)
 	local lspconfig = require('lspconfig')
 	lspconfig.pyright.setup {
 		capabilities = capabilities,
