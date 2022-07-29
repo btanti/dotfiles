@@ -619,38 +619,9 @@
 <C-f>	nvim/init.vim	/^inoremap <C-f> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root/;"	m
 <C-f>	nvim/init.vim	/^nnoremap <C-f> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'\/figures\/" > \/dev\/nul/;"	m
 <C-l>	nvim/init.vim	/^inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u$/;"	m
-<Leader>ga	nvim/init.vim	/^nnoremap <Leader>ga :Git add -v -- .<CR>$/;"	m
-<Leader>gb	nvim/init.vim	/^nnoremap <Leader>gb :Git branch<Space>$/;"	m
-<Leader>gc	nvim/init.vim	/^nnoremap <Leader>gc :Git commit -v -q<CR>$/;"	m
-<Leader>gd	nvim/init.vim	/^nnoremap <Leader>gd :Git diff<CR>$/;"	m
-<Leader>ge	nvim/init.vim	/^nnoremap <Leader>ge :Gedit<CR>$/;"	m
-<Leader>gl	nvim/init.vim	/^nnoremap <Leader>gl :silent! Glog<CR>:bot copen<CR>$/;"	m
-<Leader>gm	nvim/init.vim	/^nnoremap <Leader>gm :Gmove<Space>$/;"	m
-<Leader>go	nvim/init.vim	/^nnoremap <Leader>go :Git checkout<Space>$/;"	m
-<Leader>gpl	nvim/init.vim	/^nnoremap <Leader>gpl :Git pull<CR>$/;"	m
-<Leader>gps	nvim/init.vim	/^nnoremap <Leader>gps :Git push -v<CR>$/;"	m
-<Leader>gr	nvim/init.vim	/^nnoremap <Leader>gr :Gread<CR>$/;"	m
-<Leader>gs	nvim/init.vim	/^nnoremap <Leader>gs :Git status<CR>$/;"	m
-<Leader>gt	nvim/init.vim	/^nnoremap <Leader>gt :Git commit -v -q %:p<CR>$/;"	m
-<Leader>gw	nvim/init.vim	/^nnoremap <Leader>gw :Gwrite<CR><CR>$/;"	m
-<Leader>h	nvim/init.vim	/^map <Leader>h <c-w>h$/;"	m
-<Leader>j	nvim/init.vim	/^map <Leader>j <C-w>j$/;"	m
-<Leader>k	nvim/init.vim	/^map <Leader>k <C-w>k$/;"	m
-<Leader>l	nvim/init.vim	/^map <Leader>l <c-w>l$/;"	m
 <c-t>	nvim/init.vim	/^inoremap <silent><c-t> <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>$/;"	m
 <c-t>	nvim/init.vim	/^nnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>$/;"	m
 <leader>b	nvim/init.vim	/^nnoremap <leader>b :buffers<cr>:b<space> $/;"	m
-<leader>es	nvim/init.vim	/^map <leader>es :sp %%$/;"	m
-<leader>et	nvim/init.vim	/^map <leader>et :tabe %%$/;"	m
-<leader>ev	nvim/init.vim	/^map <leader>ev :vsp %%$/;"	m
-<leader>ew	nvim/init.vim	/^map <leader>ew :e %%$/;"	m
-<leader>xd	nvim/init.vim	/^nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>$/;"	m
-<leader>xl	nvim/init.vim	/^nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>$/;"	m
-<leader>xq	nvim/init.vim	/^nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>$/;"	m
-<leader>xw	nvim/init.vim	/^nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>$/;"	m
-<leader>xx	nvim/init.vim	/^nnoremap <leader>xx <cmd>TroubleToggle<cr>$/;"	m
-<s-h>	nvim/init.vim	/^nnoremap <s-h> :bprevious<CR>$/;"	m
-<s-l>	nvim/init.vim	/^nnoremap <s-l> :bnext<CR>$/;"	m
 @vscode/codicons	nvim/lua/package-lock.json	/^        "@vscode\/codicons": "^0.0.29"$/;"	s	object:packages..dependencies
 @vscode/codicons	nvim/lua/package-lock.json	/^    "@vscode\/codicons": {$/;"	o	object:dependencies
 @vscode/codicons	nvim/lua/package.json	/^    "@vscode\/codicons": "^0.0.29"$/;"	s	object:dependencies
@@ -2471,6 +2442,7 @@ g:UltiSnipsSnippetDirectories	nvim/init.vim	/^let g:UltiSnipsSnippetDirectories=
 g:UltiSnipsSnippetDirectories	nvim/init.vim	/^let g:UltiSnipsSnippetDirectories=[$HOME.'\/.vim\/UltiSnips']          " using Vim$/;"	v
 g:doge_doc_standard_python	nvim/init.vim	/^let g:doge_doc_standard_python = 'google'$/;"	v
 g:gutentags_project_root	nvim/init.vim	/^let g:gutentags_project_root = ['Makefile']$/;"	v
+g:lsp_settings	nvim/init.vim	/^let g:lsp_settings = {$/;"	v
 g:startify_bookmarks	nvim/init.vim	/^let g:startify_bookmarks = [ {'h': '~\/Documents\/notes\/optimization\/convex\/hw\/'}, {'r': '~\//;"	v
 g:startify_lists	nvim/init.vim	/^let g:startify_lists = [$/;"	v
 g:startify_session_autoload	nvim/init.vim	/^let g:startify_session_autoload = 1$/;"	v
@@ -2485,7 +2457,6 @@ g:vimtex_view_general_options	nvim/init.vim	/^let g:vimtex_view_general_options 
 g:vimtex_view_general_viewer	nvim/init.vim	/^       let g:vimtex_view_general_viewer = 'SumatraPDF.exe'$/;"	v
 g:vimtex_view_general_viewer	nvim/init.vim	/^       let g:vimtex_view_general_viewer = 'mupdf.exe'$/;"	v
 g:vimtex_view_method	nvim/init.vim	/^let g:vimtex_view_method = 'zathura'$/;"	v
-gR	nvim/init.vim	/^nnoremap gR <cmd>TroubleToggle lsp_references<cr>$/;"	m
 gather	nvim/lua/node_modules/@vscode/codicons/dist/codicon.svg	/^<?xml version="1.0" encoding="utf-8"?><svg xmlns="http:\/\/www.w3.org\/2000\/svg" xmlns:xlink="h/;"	i
 gather	nvim/lua/node_modules/@vscode/codicons/src/template/mapping.json	/^  "gather": 60342,$/;"	n
 gear	nvim/lua/node_modules/@vscode/codicons/dist/codicon.svg	/^<?xml version="1.0" encoding="utf-8"?><svg xmlns="http:\/\/www.w3.org\/2000\/svg" xmlns:xlink="h/;"	i
@@ -5240,14 +5211,9 @@ yaml_tag	dotbot/lib/pyyaml/tests/lib3/test_constructor.py	/^        yaml_tag = "
 yaml_tag	dotbot/lib/pyyaml/tests/lib3/test_constructor.py	/^        yaml_tag = '!bar'$/;"	v	class:_make_objects.YAMLObject2
 yaml_tag	dotbot/lib/pyyaml/tests/lib3/test_constructor.py	/^        yaml_tag = '!foo'$/;"	v	class:_make_objects.YAMLObject1
 yellow	dotbot/test/driver-lib.bash	/^yellow() {$/;"	f
-zS	nvim/init.vim	/^nnoremap zS :PackerStatus<cr>$/;"	m
 zap	nvim/lua/node_modules/@vscode/codicons/dist/codicon.svg	/^<?xml version="1.0" encoding="utf-8"?><svg xmlns="http:\/\/www.w3.org\/2000\/svg" xmlns:xlink="h/;"	i
 zap	nvim/lua/node_modules/@vscode/codicons/src/template/mapping.json	/^  "zap": 60038,$/;"	n
-zc	nvim/init.vim	/^nnoremap zc :PackerCompile<cr>$/;"	m
-zi	nvim/init.vim	/^nnoremap zi :PackerInstall<cr>$/;"	m
 zoom-in	nvim/lua/node_modules/@vscode/codicons/dist/codicon.svg	/^<?xml version="1.0" encoding="utf-8"?><svg xmlns="http:\/\/www.w3.org\/2000\/svg" xmlns:xlink="h/;"	i
 zoom-in	nvim/lua/node_modules/@vscode/codicons/src/template/mapping.json	/^  "zoom-in": 60289,$/;"	n
 zoom-out	nvim/lua/node_modules/@vscode/codicons/dist/codicon.svg	/^<?xml version="1.0" encoding="utf-8"?><svg xmlns="http:\/\/www.w3.org\/2000\/svg" xmlns:xlink="h/;"	i
 zoom-out	nvim/lua/node_modules/@vscode/codicons/src/template/mapping.json	/^  "zoom-out": 60290,$/;"	n
-zs	nvim/init.vim	/^nnoremap zs :PackerSync<cr>$/;"	m
-zu	nvim/init.vim	/^nnoremap zu :PackerUpdate<cr>$/;"	m

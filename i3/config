@@ -8,7 +8,7 @@
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border pixel 1
 set $mod Mod4
 
 default_floating_border pixel
@@ -186,6 +186,19 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
+mode "inkscape" {	
+	bindsym $mod+o exec ~/.dotfiles/i3/scripts/search_ink_obj.sh
+	bindsym $mod+f exec ~/.dotfiles/i3/scripts/ink_keybinds.sh f
+	bindsym $mod+o exec ~/.dotfiles/i3/scripts/ink_keybinds.sh o
+	bindsym $mod+s exec ~/.dotfiles/i3/scripts/ink_keybinds.sh s
+	bindsym $mod+a exec ~/.dotfiles/i3/scripts/ink_keybinds.sh a
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+
+}
+
 bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -204,9 +217,6 @@ exec_always --no-startup-id ~/.dotfiles/i3/scripts/wallpaper.sh
 exec_always --no-startup-id ~/.dotfiles/i3/scripts/monitor.sh
 
 # inkscape settings
-for_window [instance=popup-bottom-center] floating_enable
-for_window [instance=popup-bottom-center] [floating] resize set 640 480
-for_window [instance=popup-bottom-center] move absolute position center
 
 # open nvim terminal
 bindsym $mod+Shift+n exec "kitty -e nvim ~/Documents/notes"; focus
@@ -214,9 +224,17 @@ bindsym $mod+Shift+n exec "kitty -e nvim ~/Documents/notes"; focus
 # open nvim as scratchpad
 bindsym $mod+Shift+s exec ~/.dotfiles/i3/scripts/daily_note.sh &; focus
 
+for_window [instance=popupink] floating enable
+for_window [instance=popupink] [floating] resize set 640 220
+for_window [instance=popupink] move absolute position center
 for_window [instance=scratch] floating enable
 for_window [instance=scratch] [floating] resize set 640 480
 for_window [instance=scratch] move absolute position center
+for_window [class=Inkscape] floating enable
+for_window [class=Inkscape] [floating] resize set 1280 720
+for_window [class=Inkscape] move absolute position center
+
+
 
 # primary is the bottom center monitor
 # secondary is immediately to the left

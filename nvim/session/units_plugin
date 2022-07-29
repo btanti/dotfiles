@@ -13,13 +13,20 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +5 units.lua
+badd +1 units.lua
 badd +1 ~/.config/init.vim
-badd +117 ~/.dotfiles/nvim/init.vim
+badd +36 ~/.dotfiles/nvim/init.vim
+badd +1 ~/personal/vim-inkscape
+badd +5 ~/personal/vim-inkscape/selector.lua
+badd +238 ~/.dotfiles/nvim/lua/plugins.lua
 argglobal
 %argdel
-edit ~/.dotfiles/nvim/init.vim
 argglobal
+if bufexists(fnamemodify("term://~/personal/nvim-units//296579:/bin/bash;\#toggleterm\#1", ":p")) | buffer term://~/personal/nvim-units//296579:/bin/bash;\#toggleterm\#1 | else | edit term://~/personal/nvim-units//296579:/bin/bash;\#toggleterm\#1 | endif
+if &buftype ==# 'terminal'
+  silent file term://~/personal/nvim-units//296579:/bin/bash;\#toggleterm\#1
+endif
+balt ~/personal/vim-inkscape/selector.lua
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -28,14 +35,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 117 - ((35 * winheight(0) + 35) / 71)
+let s:l = 7 - ((6 * winheight(0) + 35) / 71)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 117
-normal! 021|
+keepjumps 7
+normal! 042|
 lcd ~/personal/nvim-units
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
@@ -50,7 +55,6 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

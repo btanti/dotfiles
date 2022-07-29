@@ -22,6 +22,10 @@ function M.setup()
   local mappings = {
     ["w"] = { "<cmd>update!<CR>", "Save" },
     ["q"] = { "<cmd>q!<CR>", "Quit" },
+    ["<s-h>"] =  { "<cmd>bprevious<CR>", "Prev buffer" },
+    ["<s-l>"] =  { "<cmd>bnext<CR>", "Next buffer" },
+    ["<c-h>"] = { "<cmd>previous<CR>", "Prev arg" },
+    ["<c-l>"] =  { "<cmd>next<CR>", "Next arg" },
 
 --Movement Keys
     j = { "<C-w>j", "Focus lower buffer"},
@@ -34,18 +38,10 @@ function M.setup()
       d = { "<Cmd>bd!<Cr>", "Close current buffer" },
       D = { "<Cmd>%bd|e#|bd#<Cr>", "Delete all buffers" },
     },
-
     c = {
       name = "NERDCommenter"
     },
-    t = {
-      name = "Vim-test",
-      t = {"<cmd>TestNearest<cr>", "Nearest"},
-      T = {"<cmd>TestFile<cr>", "File"},
-      a = {"<cmd>TestSuite<cr>", "Suite"},
-      l = {"<cmd>TestLast<cr>", "Last"},
-      g = {"<cmd>TestVisit<cr>", "Visit"},
-    },
+    d = {"<cmd>DogeGenerate<cr>", "Generate documentation"},
     e = {
       name = "Edit",
       w =  {":e %%"},
@@ -78,6 +74,14 @@ function M.setup()
 	b = {":Git branch<Space>", "Branch",},
 	o = {":Git checkout<Space>", "Checkout"},
     },
+    t = {
+      name = "Vim-test",
+      t = {"<cmd>TestNearest<cr>", "Nearest"},
+      T = {"<cmd>TestFile<cr>", "File"},
+      a = {"<cmd>TestSuite<cr>", "Suite"},
+      l = {"<cmd>TestLast<cr>", "Last"},
+      g = {"<cmd>TestVisit<cr>", "Visit"},
+    },
     x = {
       name = "Trouble",
       x = {"<cmd>TroubleToggle<cr>", "Show all diagnostics"},
@@ -99,7 +103,10 @@ function M.setup()
 	name = "Jupyter",
 	x = {"<cmd>JupyterExecute", "Execute cell"},
 	X = {"<cmd>JupyterExecuteAll", "Execute all cells"},
-    }
+    },
+--Inkscape
+    ["<s-f>"] = {"<cmd>luafile ~/personal/vim-inkscape/selector.lua<cr>", "Select Figures (tex)"},
+    [",f"] = {"<cmd>luafile ~/personal/vim-inkscape/new_fig.lua<cr>", "Create Figure (tex)"},
   }
 
   whichkey.setup(conf)

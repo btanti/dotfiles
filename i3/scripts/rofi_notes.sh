@@ -54,4 +54,4 @@ echo -en "\0prompt\x1f search:\n"
 echo ".."
 # Print formatted listing
 #ls --group-directories-first --color=never --indicator-style=slash | egrep '/$|\.tex$|\.pdf$'
-find . -type f \( -name "*.pdf" -o -name "*.tex" \) | sort
+find . -type f \( -name "*.pdf" -o -name "*.tex" \) | sort | cut -c 3-

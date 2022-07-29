@@ -64,6 +64,7 @@ return require('packer').startup(function()
 		-- Mappings.
 		-- See `:help vim.lsp.*` for documentation on any of the below functions
 		local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
 		vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
 		vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
 		vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
@@ -227,7 +228,14 @@ return require('packer').startup(function()
 				lspconfig.sumneko_lua.setup {
 					filetypes = { "lua" },
 					capabilities = capabilities,
-					on_attach = on_attach
+					on_attach = on_attach,
+					settings = {
+					    Lua = {
+						diagnostics = {
+						    globals = {'vim'}
+						}
+					    }
+					}
 				}
 				lspconfig.rust_analyzer.setup {
 					capabilities = capabilities,
@@ -365,4 +373,3 @@ return require('packer').startup(function()
 	}
 
 end)
--- You can alias plugin names

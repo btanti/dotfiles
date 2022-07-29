@@ -20,12 +20,12 @@ filetype plugin on
 let mapleader=" "
 
 " better buffer cycling
-nnoremap <s-h> :bprevious<CR>
-nnoremap <s-l> :bnext<CR>
 
 " Time before keypress times out
 set timeout timeoutlen=300
 
+" history of ex commands increased
+set history=200
 " case-insensitive search
 set ignorecase
 
@@ -43,58 +43,14 @@ set spelllang=en_us
 set shiftround
 set shiftwidth=4
 
-" vim-test bindings
-"nmap <silent> <leader>tt :TestNearest<CR>
-"nmap <silent> <leader>tT :TestFile<CR>
-"nmap <silent> <leader>ta :TestSuite<CR>
-"nmap <silent> <leader>tl :TestLast<CR>
-"nmap <silent> <leader>tg :TestVisit<CR>
 let test#python#runner = 'pytest'
 
-" trouble bindings
-nnoremap <leader>xx <cmd>TroubleToggle<cr>
-nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
-nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
-nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
-nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
-nnoremap gR <cmd>TroubleToggle lsp_references<cr>
-
-" fugitive bindings
-nnoremap <Leader>ga :Git add -v -- .<CR>
-nnoremap <Leader>gs :Git status<CR>
-nnoremap <Leader>gc :Git commit -v -q<CR>
-nnoremap <Leader>gps :Git push -v<CR>
-nnoremap <Leader>gpl :Git pull<CR>
-nnoremap <Leader>gt :Git commit -v -q %:p<CR>
-nnoremap <Leader>gd :Git diff<CR>
-nnoremap <Leader>ge :Gedit<CR>
-nnoremap <Leader>gr :Gread<CR>
-nnoremap <Leader>gw :Gwrite<CR><CR>
-nnoremap <Leader>gl :silent! Glog<CR>:bot copen<CR>
-nnoremap <Leader>gm :Gmove<Space>
-nnoremap <Leader>gb :Git branch<Space>
-nnoremap <Leader>go :Git checkout<Space>
-
-nnoremap zc :PackerCompile<cr>
-nnoremap zi :PackerInstall<cr>
-nnoremap zs :PackerSync<cr>
-nnoremap zS :PackerStatus<cr>
-nnoremap zu :PackerUpdate<cr>
 " clear search highlighting
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " expand to cwd
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-map <leader>et :tabe %%
 
-" vim switching windows
-map <Leader>j <C-w>j
-map <Leader>k <C-w>k
-map <Leader>h <c-w>h
-map <Leader>l <c-w>l
 
 " By applying the mappings this way you can pass a count to your
 " mapping to open a specific window.
@@ -122,6 +78,20 @@ augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
 augroup end
+
+" more lsp stuf
+let g:lsp_settings = {
+    \  "sumneko-lua-language-server": {
+    \       "workspace_config": {
+    \           "Lua": {
+    \               "diagnostics": {
+    \                   "globals": ["hs", "vim", "it", "describe", "before_each", "after_each"],
+    \                   "disable": ["lowercase-global", "undefined-global", "unused-local", "unused-vararg", "trailing-space"]
+    \               }
+    \           }
+    \       }
+    \   }
+    \}
 
 " jupyter notebook autocmd
 "au BufReadPost,BufNewFile \(*\).sync.py exe v:count1 . 'ToggleTerm" | dir=getcwd() | TermExec cmd ="jupyter notebook example.sync.ipynb"

@@ -5,4 +5,4 @@ if ! [[ -d "$note_dir" ]]; then
     mkdir "$note_dir"
 fi
 
-kitty -e --name scratch nvim $note_dir/note.txt -c :startinsert -c "normal! g\`\""
+kitty -e --name scratch nvim $note_dir/note.txt -c "nnoremap <buffer> <esc> :wq<cr>"   -c :startinsert -c "normal! g\`\""
