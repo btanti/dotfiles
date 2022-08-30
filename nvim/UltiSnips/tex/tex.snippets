@@ -60,11 +60,13 @@ snippet beg "begin{} / end{}" bA
 \\end{$1}
 endsnippet
 
-priority 100
-context "math()"
-snippet ... "ldots" iA
-\ldots
+snippet it "text italic" wi
+\textit{${VISUAL}$1} $0
 endsnippet
+
+snippet tb "text bold" wi
+\textbf{${VISUAL}$1} $0
+endsnippet 
 
 snippet table "Table environment" b
 \begin{table}[${1:htpb}]
@@ -80,9 +82,16 @@ endsnippet
 snippet fig "Figure environment" b
 \begin{figure}[${1:H}]
 	\centering
-	\includegraphics[width=0.8\textwidth]{${2:filepath}}
+	\includegraphics[width=0.8\textwidth]{figures/${2:filepath.png}}
 	\caption{${3:insert caption}}
 	\label{fig:${4:${3/\W+/-/g}}}
+\end{figure}
+endsnippet
+
+snippet fig* "Figure environment" b
+\begin{figure}[${1:H}]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/${2:filepath.png}}
 \end{figure}
 endsnippet
 
@@ -194,20 +203,6 @@ snippet ct "cite" b
 \cite{${1:${VISUAL}}}
 endsnippet
 
-# numerical
-snippet "np(\[(\[\d+(,[\d]+)*\])(,\[\d+(,[\d]+)*\])*\])" "numpy 2d to string" riA
-`!p from numpy import array2string, array
-snip.rv=array2string(array(eval(match.group(1))))`
-endsnippet
-
-snippet "npl([pbBvV])(\[(\[\d+(,[\d]+)*\])(,\[\d+(,[\d]+)*\])*\])" "numpy2d to latex" riA
-`!p from numpy import array2string, array
-snip.rv = "\\begin{" + match.group(1) + "matrix}"
-for i, line in enumerate(eval(match.group(2))):
-	snip += "\t" + ' & '.join([str(d) for d in line]) + "\\\\"
-snip += '\\end{' + match.group(1) + 'matrix}'`
-endsnippet
-
 snippet dta "doc to anki" b
 \begin{dtacard}
 	\begin{dtaques}
@@ -219,3 +214,29 @@ snippet dta "doc to anki" b
 \end{dtacard}
 endsnippet
 
+# change this to regex number [0-9]
+snippet mn2 "minipage" b
+\begin{minipage}{0.49\textwidth}
+    $1
+\end{minipage}
+\hfill
+\begin{minipage}{0.49\textwidth}
+    $2
+\end{minipage} 
+$0
+endsnippet
+
+snippet mn3 "minipage" b
+\begin{minipage}{0.32\textwidth}
+    $1
+\end{minipage}
+\hfill
+\begin{minipage}{0.32\textwidth}
+    $2
+\end{minipage} 
+\hfill
+\begin{minipage}{0.32\textwidth}
+    $3
+\end{minipage}
+$0
+endsnippet

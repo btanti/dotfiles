@@ -1,4 +1,9 @@
 ### optidef ###
+global !p
+def siunitx():
+    return
+endglobal
+
 snippet omn "omnidef mini nonumber" b
 \begin{mini*}
 {$1}{${2:objective}}{}{}
@@ -13,33 +18,114 @@ snippet omx "omnidef maxi nonumber" b
 \end{maxi*}
 endsnippet
 
-
+### vim-inkscape
+snippet ifg "incfig" b
+\begin{figure}[${1:H}]
+	\centering
+	\incfig{${2:${VISUAL}}}
+	\caption{${3:insert caption}}
+	\label{fig:${4:${3/\W+/-/g}}}
+\end{figure}
+endsnippet
 ### istgame ###
 
 
+### tcolorbox
+
+snippet nb "note box" b
+
+endsnippet
+
+snippet cb "code block" b
+\begin{codebox}
+    $0
+\end{codebox}
+endsnippet
+
+snippet whl "word highlight" iA
+\wordhl[$1]{$2} $0
+endsnippet
 
 
 ### doc2anki ###
 
 
-snippet dta "doc to anki" b
-\begin{dtacard}
-	\begin{dtaques}
-		${1:[Question]}
-	\end{dtaques}
-	\begin{dtaans}
-		${2:[Answer]}
-	\end{dtaans}
-\end{dtacard}
+snippet card "doc to anki" b
+\begin{Card}
+	\begin{Question}
+		${1:${VISUAL:[Question]}}
+	\end{Question}
+
+	\begin{Answer}
+		${2:${VISUAL:[Answer]}}
+	\end{Answer}
+\end{Card}
 endsnippet
 
+
+### circuitikz
+snippet ctz "circuitikz" iA
+\begin{circuitikz}
+    $0
+\end{circuitikz}
+endsnippet
 
 ### siunitx ###
 
-snippet SIx "SI units" iA
-\SI{$1}{$2}
+snippet SIx "SI unit define" iA
+\SI{${1:${VISUAL}}}{${2:${VISUAL}}}
 endsnippet
 
+snippet siu "unit command" i
+\unit{$1} $0
+endsnippet
+
+snippet num "num command" w
+\num{$1} $0
+endsnippet
+
+# electrical
+context "siunitx()"
+snippet "(([mkM])+ohm)" "ohm" rwA
+\\`!p snip.rv=match.group(0)`
+endsnippet
+
+context "siunitx()"
+snippet "(([umk])+A)" "amperes" rwA
+\\`!p snip.rv=match.group(0)`
+endsnippet
+
+snippet J/C "joule per coulomb" iA
+\unit{\joule\per\coulomb} 
+endsnippet
+
+# statics and dynamics
+snippet N/m^2 "newton per meter squared" iA
+\unit{\newton\per\metre\squared} 
+endsnippet
+
+snippet m/s^2 "meters per second squared" iA
+\unit{\metre\per\second\squared} 
+endsnippet
+
+# thermo
+snippet J/molK "joule per mole kelvin" iA
+\unit{\joule\per\mole\per\kelvin} 
+endsnippet
+
+snippet "\sC\s" "coulomb" rwA
+\unit{\coulomb} 
+endsnippet
+
+# volume
+snippet "\sL\s" "liter" rwA
+\unit{\litre}
+endsnippet
+
+# temperature 
+snippet cel "celsius"
+\unit{\degreeCelsius}
+endsnippet
 
 ### cleverref ###
 
@@ -51,7 +137,7 @@ snippet Crf "cleverref capital" A
 \Cref{${1:${VISUAL}}}
 endsnippet
 
-snippet vrb "fancyvrb verbatim" A
+snippet vv "fancyvrb verbatim" A
 \Verb+${1:${VISUAL}}+$0
 endsnippet
 
@@ -81,10 +167,32 @@ endsnippet
 
 
 ### minted ###
+snippet premint "mint style 1 preamble" b
+\BeforeBeginEnvironment{minted}{\begin{tcolorbox}}%
+\AfterEndEnvironment{minted}{\end{tcolorbox}}%
+endsnippet
+
 
 snippet mintp "python minted" bW
-\begin{minted}
-{python}
+\begin{minted}{python}
+$0
+\end{minted}
+endsnippet
+
+snippet mintpe "perl minted" bW
+\begin{minted}{perl}
+$0
+\end{minted}
+endsnippet
+
+snippet mintb "bash minted" bW
+\begin{minted}{bash}
+$0
+\end{minted}
+endsnippet
+
+snippet mintc "c++ minted" bW
+\begin{minted}{cpp}
 $0
 \end{minted}
 endsnippet
@@ -106,8 +214,6 @@ endsnippet
 snippet tde "Todo Error" b
 \todoerror{${1:${VISUAL}}}$0
 endsnippet
-
-
 
 ### sympy ###
 
@@ -148,5 +254,11 @@ snip.rv = "\\begin{" + match.group(1) + "matrix}"
 for i, line in enumerate(eval(match.group(2))):
 	snip += "\t" + ' & '.join([str(d) for d in line]) + "\\\\"
 snip += '\\end{' + match.group(1) + 'matrix}'`
+endsnippet
+
+snippet tkz "tikz picture" bA
+\begin{tikzpicture}[$1]
+    $2
+\end{tikzpicture}
 endsnippet
 

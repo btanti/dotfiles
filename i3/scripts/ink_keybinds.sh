@@ -5,4 +5,4 @@ read -r X Y WIDTH HEIGHT < <(xdotool getwindowfocus getwindowgeometry --shell | 
 center_y=$((3 * $HEIGHT/4))
 center_x=$(($WIDTH/2))
 
-~/.config/rofi/bin/launcher_ink_prompt
+~/.config/rofi/bin/launcher_ink_prompt 

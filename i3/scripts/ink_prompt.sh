@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
-echo -en "\0prompt\x1f > \n"
+if [ $# -ne 0 ]
+then
+    echo $@
+    exit 0
+else
+    echo -en "\0prompt\x1f > \n"
+fi

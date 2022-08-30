@@ -150,6 +150,7 @@ _G.packer_plugins = {
     url = "https://github.com/MunifTanjim/nui.nvim"
   },
   ["nvim-autopairs"] = {
+    config = { "\27LJ\2\2@\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0" },
     loaded = true,
     path = "/home/bryan/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
     url = "https://github.com/windwp/nvim-autopairs"
@@ -205,6 +206,11 @@ _G.packer_plugins = {
     path = "/home/bryan/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["telescope-fzf-native.nvim"] = {
+    loaded = true,
+    path = "/home/bryan/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
+  },
   ["toggleterm.nvim"] = {
     config = { "\27LJ\2\0028\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\15toggleterm\frequire\0" },
     loaded = true,
@@ -217,10 +223,21 @@ _G.packer_plugins = {
     path = "/home/bryan/.local/share/nvim/site/pack/packer/start/trouble.nvim",
     url = "https://github.com/folke/trouble.nvim"
   },
+  ultisnips = {
+    config = { "\27LJ\2\2Ÿ\1\0\0\2\0\a\0\r6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\1\0'\1\3\0=\1\4\0006\0\0\0009\0\1\0'\1\6\0=\1\5\0K\0\1\0\f<s-tab>!UltiSnipsJumpBackwardTrigger UltiSnipsJumpForwardTrigger\n<tab>\27UltiSnipsExpandTrigger\6g\bvim\0" },
+    loaded = true,
+    path = "/home/bryan/.local/share/nvim/site/pack/packer/start/ultisnips",
+    url = "https://github.com/Sirver/ultisnips"
+  },
   ["vim-devicons"] = {
     loaded = true,
     path = "/home/bryan/.local/share/nvim/site/pack/packer/start/vim-devicons",
     url = "https://github.com/ryanoasis/vim-devicons"
+  },
+  ["vim-doge"] = {
+    loaded = true,
+    path = "/home/bryan/.local/share/nvim/site/pack/packer/start/vim-doge",
+    url = "https://github.com/kkoomen/vim-doge"
   },
   ["vim-fugitive"] = {
     loaded = true,
@@ -232,6 +249,11 @@ _G.packer_plugins = {
     path = "/home/bryan/.local/share/nvim/site/pack/packer/start/vim-gutentags",
     url = "https://github.com/ludovicchabant/vim-gutentags"
   },
+  ["vim-sandwich"] = {
+    loaded = true,
+    path = "/home/bryan/.local/share/nvim/site/pack/packer/start/vim-sandwich",
+    url = "https://github.com/machakann/vim-sandwich"
+  },
   ["vim-startify"] = {
     loaded = true,
     path = "/home/bryan/.local/share/nvim/site/pack/packer/start/vim-startify",
@@ -242,15 +264,16 @@ _G.packer_plugins = {
     path = "/home/bryan/.local/share/nvim/site/pack/packer/start/vim-startuptime",
     url = "https://github.com/dstein64/vim-startuptime"
   },
-  ["vim-surround"] = {
-    loaded = true,
-    path = "/home/bryan/.local/share/nvim/site/pack/packer/start/vim-surround",
-    url = "https://github.com/tpope/vim-surround"
-  },
   ["vim-test"] = {
     loaded = true,
     path = "/home/bryan/.local/share/nvim/site/pack/packer/start/vim-test",
     url = "https://github.com/vim-test/vim-test"
+  },
+  vimtex = {
+    config = { "\27LJ\2\2«\1\0\0\2\0\a\0\0176\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\1\0)\1\0\0=\1\4\0006\0\0\0009\0\1\0)\1\1\0=\1\5\0006\0\0\0009\0\1\0)\1\1\0=\1\6\0K\0\1\0\"vimtex_syntax_conceal_disable\26vimtex_syntax_enabled\25vimtex_quickfix_mode\nlatex\15tex_flavor\6g\bvim\0" },
+    loaded = true,
+    path = "/home/bryan/.local/share/nvim/site/pack/packer/start/vimtex",
+    url = "https://github.com/lervag/vimtex"
   },
   ["which-key.nvim"] = {
     config = { "\27LJ\2\2=\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20config.whichkey\frequire\0" },
@@ -261,18 +284,30 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-lsp-installer
-time([[Config for nvim-lsp-installer]], true)
-try_loadstring("\27LJ\2\2¥\1\0\0\4\0\b\0\v6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\6\0005\2\4\0005\3\3\0=\3\5\2=\2\a\1B\0\2\1K\0\1\0\aui\1\0\0\nicons\1\0\0\1\0\3\23server_uninstalled\bâœ—\21server_installed\bâœ“\19server_pending\bâžœ\nsetup\23nvim-lsp-installer\frequire\0", "config", "nvim-lsp-installer")
-time([[Config for nvim-lsp-installer]], false)
 -- Config for: trouble.nvim
 time([[Config for trouble.nvim]], true)
 try_loadstring("\27LJ\2\0029\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
 time([[Config for trouble.nvim]], false)
+-- Config for: vimtex
+time([[Config for vimtex]], true)
+try_loadstring("\27LJ\2\2«\1\0\0\2\0\a\0\0176\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\1\0)\1\0\0=\1\4\0006\0\0\0009\0\1\0)\1\1\0=\1\5\0006\0\0\0009\0\1\0)\1\1\0=\1\6\0K\0\1\0\"vimtex_syntax_conceal_disable\26vimtex_syntax_enabled\25vimtex_quickfix_mode\nlatex\15tex_flavor\6g\bvim\0", "config", "vimtex")
+time([[Config for vimtex]], false)
 -- Config for: which-key.nvim
 time([[Config for which-key.nvim]], true)
 try_loadstring("\27LJ\2\2=\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20config.whichkey\frequire\0", "config", "which-key.nvim")
 time([[Config for which-key.nvim]], false)
+-- Config for: nvim-lsp-installer
+time([[Config for nvim-lsp-installer]], true)
+try_loadstring("\27LJ\2\2¥\1\0\0\4\0\b\0\v6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\6\0005\2\4\0005\3\3\0=\3\5\2=\2\a\1B\0\2\1K\0\1\0\aui\1\0\0\nicons\1\0\0\1\0\3\23server_uninstalled\bâœ—\21server_installed\bâœ“\19server_pending\bâžœ\nsetup\23nvim-lsp-installer\frequire\0", "config", "nvim-lsp-installer")
+time([[Config for nvim-lsp-installer]], false)
+-- Config for: ultisnips
+time([[Config for ultisnips]], true)
+try_loadstring("\27LJ\2\2Ÿ\1\0\0\2\0\a\0\r6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\1\0'\1\3\0=\1\4\0006\0\0\0009\0\1\0'\1\6\0=\1\5\0K\0\1\0\f<s-tab>!UltiSnipsJumpBackwardTrigger UltiSnipsJumpForwardTrigger\n<tab>\27UltiSnipsExpandTrigger\6g\bvim\0", "config", "ultisnips")
+time([[Config for ultisnips]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\2@\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
 -- Config for: toggleterm.nvim
 time([[Config for toggleterm.nvim]], true)
 try_loadstring("\27LJ\2\0028\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\15toggleterm\frequire\0", "config", "toggleterm.nvim")

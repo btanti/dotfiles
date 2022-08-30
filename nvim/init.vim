@@ -1,17 +1,5 @@
-" Vim-plug initialization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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
 call plug#begin()
-Plug 'SirVer/ultisnips'
-    let g:UltiSnipsExpandTrigger = '<tab>'
-    let g:UltiSnipsJumpForwardTrigger = '<tab>'
-    let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
-Plug 'lervag/vimtex'
-    let g:tex_flavor='latex'
-    let g:vimtex_quickfix_mode=0
-    let g:vimtex_syntax_enabled = 1
-    let g:vimtex_syntax_conceal_disable = 1
-Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+"Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 call plug#end()
 
 filetype plugin on
@@ -19,34 +7,31 @@ filetype plugin on
 " Leader key
 let mapleader=" "
 
-" better buffer cycling
-
 " Time before keypress times out
 set timeout timeoutlen=300
-
 " history of ex commands increased
 set history=200
 " case-insensitive search
 set ignorecase
-
 " Line numbers on
 set number
-
 " for nvim-compe
 set completeopt=menu,menuone,noselect
-
 " Spellchecker settings
 setlocal spell
 set spelllang=en_us
-
 " shifting lines
 set shiftround
 set shiftwidth=4
 
 let test#python#runner = 'pytest'
+nnoremap <s-h> :bprevious<CR>
+nnoremap <s-l> :bnext<CR>
+nnoremap <c-h> :previous<CR>
+nnoremap <c-l> :next<CR>
 
 " clear search highlighting
-inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+" inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " expand to cwd
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
@@ -60,10 +45,6 @@ inoremap <silent><c-t> <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>
 
 " vim buffer management
 nnoremap <leader>b :buffers<cr>:b<space> 
-
-" inkscape-figure-manager bindings
-inoremap <C-f> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
-nnoremap <C-f> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
 
 " Toggleterm settings
 autocmd TermEnter term://*toggleterm#*
@@ -98,6 +79,7 @@ let g:lsp_settings = {
 au BufReadPost,BufNewFile \(*\).sync.py let file=expand("%") | exe v:count1 . 'ToggleTerm' | let dir_str=getcwd() | exe 'TermExec cmd="conda activate rl-camd"' | exe 'TermExec cmd="jupyter notebook '.substitute(file, '\(.\).sync.py', '\1.sync.ipynb', '').'"'
 
 lua require('plugins')
+runtime macros/sandwich/keymap/surround.vim
 let g:vimtex_compiler_latexmk = {
     \ 'options' : [
     \    '-shell-escape',
@@ -119,6 +101,8 @@ set hidden
        let g:vimtex_view_general_viewer = 'SumatraPDF.exe'
      endif
    endif
+
+" vim-doge settings"
 let g:doge_doc_standard_python = 'google'
 
 " UltiSnips snippet directories
@@ -130,7 +114,7 @@ let g:gutentags_project_root = ['Makefile']
 set statusline+=%{gutentags#statusline()}
 
 " startify settings
-let g:startify_bookmarks = [ {'h': '~/Documents/notes/optimization/convex/hw/'}, {'r': '~/research/'}]
+let g:startify_bookmarks = [ {'h': '~/Documents/notes/optimization/convex/hw/'}, {'r': '~/research/'}, {'i': "~/.config/inkscape/extensions/"}]
 let g:startify_session_dir = '~/.config/nvim/session'
 let g:startify_session_autoload = 1
 let g:startify_session_persistence = 1
@@ -157,22 +141,6 @@ vim.diagnostic.config({
 })
 
 -- Show all diagnostics on current line in floating window
-vim.api.nvim_set_keymap(
-  'n', '<Leader>fe', ':lua vim.diagnostic.open_float()<CR>', 
-  { noremap = true, silent = true }
-)
--- Go to next diagnostic (if there are multiple on the same line, only shows
--- one at a time in the floating window)
-vim.api.nvim_set_keymap(
-  'n', '<Leader>fn', ':lua vim.diagnostic.goto_next()<CR>',
-  { noremap = true, silent = true }
-)
--- Go to prev diagnostic (if there are multiple on the same line, only shows
--- one at a time in the floating window)
-vim.api.nvim_set_keymap(
-  'n', '<Leader>fp', ':lua vim.diagnostic.goto_prev()<CR>',
-  { noremap = true, silent = true }
-)
 
 function _G.set_terminal_keymaps()
   local opts = {noremap = true}

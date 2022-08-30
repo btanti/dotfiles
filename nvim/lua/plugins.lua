@@ -9,7 +9,25 @@ return require('packer').startup(function()
 	--
 	use 'wbthomason/packer.nvim'
 	use 'rcarriga/nvim-notify'
+	use 'machakann/vim-sandwich'
 	use 'lewis6991/impatient.nvim'
+	use {
+	    'Sirver/ultisnips',
+	    config = function()
+		    vim.g.UltiSnipsExpandTrigger = '<tab>'
+		    vim.g.UltiSnipsJumpForwardTrigger = '<tab>'
+		    vim.g.UltiSnipsJumpBackwardTrigger = '<s-tab>'
+		end
+	}
+	use {
+	    'lervag/vimtex',
+	    config = function()
+	    vim.g.tex_flavor='latex'
+	    vim.g.vimtex_quickfix_mode=0
+	    vim.g.vimtex_syntax_enabled = 1
+	    vim.g.vimtex_syntax_conceal_disable = 1
+	end
+	}
 	use 'nvim-lua/plenary.nvim'
 	use 'MunifTanjim/nui.nvim'
 	use 'delphinus/cmp-ctags'
@@ -19,7 +37,10 @@ return require('packer').startup(function()
 	use 'navarasu/onedark.nvim'
 	use 'dstein64/vim-startuptime'
 	use 'ludovicchabant/vim-gutentags'
-	use 'tpope/vim-surround'
+	use {
+	"windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup 		{} end
+	}
 	use 'windwp/nvim-autopairs'
 	use 'hrsh7th/cmp-buffer'
 	use 'tpope/vim-fugitive'
@@ -27,16 +48,24 @@ return require('packer').startup(function()
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-cmdline'
 	use 'onsails/lspkind-nvim'
-	use({
+	use {
+	    'kkoomen/vim-doge',
+	    run = function() vim.fn['doge#install'](0) end
+	}
+	use {
 	"hrsh7th/nvim-cmp",
 	requires = {
 	    { "jc-doyle/cmp-pandoc-references" }
 	}
-	})
+	}
 	use 'hrsh7th/cmp-nvim-lsp'
-	use("quangnguyen30192/cmp-nvim-ultisnips")
-	use "lukas-reineke/indent-blankline.nvim"
-	use "ray-x/lsp_signature.nvim"
+	use 'quangnguyen30192/cmp-nvim-ultisnips'
+	use 'lukas-reineke/indent-blankline.nvim'
+	use 'ray-x/lsp_signature.nvim'
+	use {
+	    'nvim-telescope/telescope-fzf-native.nvim',
+	    run = 'make'
+	}
 	
 	-- Setup nvim-cmp.
 	local cmp = require('cmp')
@@ -152,7 +181,7 @@ return require('packer').startup(function()
 
 		bind = true, -- This is mandatory, otherwise border config won't get registered.
 		-- If you want to hook lspsaga or other signature handler, pls set to false
-		doc_lines = 10, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+		doc_lines = 0, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
 		-- set to 0 if you DO NOT want any API comments be shown
 		-- This setting only take effect in insert mode, it does not affect signature help in normal
 		-- mode, 10 by default
@@ -245,6 +274,11 @@ return require('packer').startup(function()
 					capabilities = capabilities,
 					on_attach = on_attach
 				}
+
+				lspconfig.ccls.setup {
+					capabilities = capabilities,
+					on_attach = on_attach
+				}
 			end
 		}
 	}
@@ -273,14 +307,6 @@ return require('packer').startup(function()
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate'
 	}
-       --[[ use {]]
-		--[["ThePrimeagen/refactoring.nvim",]]
-		--[[requires = {]]
-			--[[{ "nvim-lua/plenary.nvim" },]]
-			--[[{ "nvim-treesitter/nvim-treesitter" }]]
-		--[[}]]
-	--[[}]]
-
 	use { 'ibhagwan/fzf-lua',
 		-- optional for icon support
 		requires = { 'kyazdani42/nvim-web-devicons' }
@@ -354,10 +380,10 @@ return require('packer').startup(function()
 		capabilities = capabilities,
 		on_attach = on_attach
 	}
-	--[[lspconfig.texlab.setup {]]
-		--[[capabilities = capabilities,]]
-		--[[on_attach = on_attach]]
-	--[[}]]
+	--]]lspconfig.texlab.setup {
+	--]]	capabilities = capabilities,
+	--]]	on_attach = on_attach
+	--]]}
 	lspconfig.sumneko_lua.setup {
 		filetypes = { "lua" },
 		capabilities = capabilities,
@@ -368,6 +394,11 @@ return require('packer').startup(function()
 		on_attach = on_attach
 	}
 	lspconfig.tsserver.setup {
+		capabilities = capabilities,
+		on_attach = on_attach
+	}
+
+	lspconfig.ccls.setup {
 		capabilities = capabilities,
 		on_attach = on_attach
 	}

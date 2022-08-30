@@ -158,3 +158,5 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 #"
 
 export EDITOR=/usr/bin/nvim
+export PATH="$PATH:$HOME/.local/share/yabridge"
+export PATH="$PATH:$HOME/AppImage"

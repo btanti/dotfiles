@@ -10,6 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 for_window [class=".*"] border pixel 1
 set $mod Mod4
+set $SCRIPT_DIR ~/.dotfiles/i3/scripts/
 
 default_floating_border pixel
 
@@ -58,15 +59,10 @@ bindsym $mod+Return exec kitty
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-# bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 bindsym $mod+d exec --no-startup-id ~/.config/rofi/bin/launcher_text
 bindsym $mod+n exec --no-startup-id ~/.config/rofi/bin/launcher_notes
 #bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # program shortcut bindings
 bindsym $mod+Shift+f exec firefox
@@ -187,11 +183,11 @@ mode "resize" {
 }
 
 mode "inkscape" {	
-	bindsym $mod+o exec ~/.dotfiles/i3/scripts/search_ink_obj.sh
-	bindsym $mod+f exec ~/.dotfiles/i3/scripts/ink_keybinds.sh f
-	bindsym $mod+o exec ~/.dotfiles/i3/scripts/ink_keybinds.sh o
-	bindsym $mod+s exec ~/.dotfiles/i3/scripts/ink_keybinds.sh s
-	bindsym $mod+a exec ~/.dotfiles/i3/scripts/ink_keybinds.sh a
+	bindsym $mod+o exec ~/.config/rofi/bin/launcher_ink_prompt 
+	bindsym $mod+f exec $SCRIPT_DIR/ink_keybinds.sh f
+	bindsym $mod+o exec $SCRIPT_DIR/ink_keybinds.sh o
+	bindsym $mod+s exec $SCRIPT_DIR/ink_keybinds.sh s
+	bindsym $mod+a exec $SCRIPT_DIR/ink_keybinds.sh a
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -213,16 +209,18 @@ bindsym $mod+r mode "resize"
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh --panels &
 exec_always --no-startup-id picom --experimental-backends -b
 exec_always --no-startup-id redshift -l 40.7:74.a 
-exec_always --no-startup-id ~/.dotfiles/i3/scripts/wallpaper.sh
-exec_always --no-startup-id ~/.dotfiles/i3/scripts/monitor.sh
+exec_always --no-startup-id $SCRIPT_DIR/wallpaper.sh
+exec_always --no-startup-id $SCRIPT_DIR/monitor.sh
 
 # inkscape settings
 
-# open nvim terminal
+# notes
 bindsym $mod+Shift+n exec "kitty -e nvim ~/Documents/notes"; focus
+bindsym $mod+c exec $SCRIPT_DIR/cheatsheet.sh
 
 # open nvim as scratchpad
-bindsym $mod+Shift+s exec ~/.dotfiles/i3/scripts/daily_note.sh &; focus
+bindsym $mod+Shift+s exec $SCRIPT_DIR/daily_note.sh &; focus
+bindsym $mod+Shift+w exec $SCRIPT_DIR/weight_log.sh &; focus
 
 for_window [instance=popupink] floating enable
 for_window [instance=popupink] [floating] resize set 640 220
@@ -233,8 +231,12 @@ for_window [instance=scratch] move absolute position center
 for_window [class=Inkscape] floating enable
 for_window [class=Inkscape] [floating] resize set 1280 720
 for_window [class=Inkscape] move absolute position center
+for_window [instance=ink_nvim] floating enable 
+for_window [instance=ink_nvim] [floating] resize set 220 12
 
-
+for_window [instance=notes_float] floating enable 
+for_window [instance=notes_float] [floating] resize set 800 300
+for_window [instance=notes_float] move position top
 
 # primary is the bottom center monitor
 # secondary is immediately to the left
@@ -245,9 +247,9 @@ workspace 5 output DP-0
 # Screenshots
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date '+%Y-%m-%d').png"
 bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
-bindsym Ctrl+Shift+5 exec --no-startup-id maim --select -o "/home/$USER/Pictures/$(date '+%FT%T').png"
+bindsym Ctrl+Shift+5 exec --no-startup-id $SCRIPT_DIR/screenshot.sh select
 
 ## Clipboard Screenshots
-bindsym Ctrl+Shift+3 exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+3 exec --no-startup-id $SCRIPT_DIR/screenshot.sh
 bindsym Ctrl+Shift+4 exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
 bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png

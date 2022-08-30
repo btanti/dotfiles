@@ -616,12 +616,13 @@
 9	nvim/lua/node_modules/@vscode/codicons/_iconCloud/manifest.transforms.json	/^      {$/;"	o	array:21.transforms
 9	nvim/lua/node_modules/@vscode/codicons/_iconCloud/manifest.transforms.json	/^  {$/;"	o
 9	nvim/lua/node_modules/@vscode/codicons/_iconCloud/manifest.variables.json	/^  {$/;"	o
-<C-f>	nvim/init.vim	/^inoremap <C-f> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root/;"	m
-<C-f>	nvim/init.vim	/^nnoremap <C-f> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'\/figures\/" > \/dev\/nul/;"	m
-<C-l>	nvim/init.vim	/^inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u$/;"	m
+<c-h>	nvim/init.vim	/^nnoremap <c-h> :previous<CR>$/;"	m
+<c-l>	nvim/init.vim	/^nnoremap <c-l> :next<CR>$/;"	m
 <c-t>	nvim/init.vim	/^inoremap <silent><c-t> <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>$/;"	m
 <c-t>	nvim/init.vim	/^nnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>$/;"	m
 <leader>b	nvim/init.vim	/^nnoremap <leader>b :buffers<cr>:b<space> $/;"	m
+<s-h>	nvim/init.vim	/^nnoremap <s-h> :bprevious<CR>$/;"	m
+<s-l>	nvim/init.vim	/^nnoremap <s-l> :bnext<CR>$/;"	m
 @vscode/codicons	nvim/lua/package-lock.json	/^        "@vscode\/codicons": "^0.0.29"$/;"	s	object:packages..dependencies
 @vscode/codicons	nvim/lua/package-lock.json	/^    "@vscode\/codicons": {$/;"	o	object:dependencies
 @vscode/codicons	nvim/lua/package.json	/^    "@vscode\/codicons": "^0.0.29"$/;"	s	object:dependencies
@@ -1889,6 +1890,8 @@ compose_sequence_node	dotbot/lib/pyyaml/lib3/yaml/composer.py	/^    def compose_
 config	nvim/lua/node_modules/@vscode/codicons/scripts/svg-sprite.js	/^const config = {$/;"	v
 config	nvim/lua/plugins.lua	/^			config = function()$/;"	f
 config	nvim/lua/plugins.lua	/^		config = function()$/;"	f
+config	nvim/lua/plugins.lua	/^	    config = function()$/;"	f
+config	nvim/lua/plugins.lua	/^        config = function() require("nvim-autopairs").setup 		{} end$/;"	f
 console	nvim/lua/node_modules/@vscode/codicons/dist/codicon.svg	/^<?xml version="1.0" encoding="utf-8"?><svg xmlns="http:\/\/www.w3.org\/2000\/svg" xmlns:xlink="h/;"	i
 console	nvim/lua/node_modules/@vscode/codicons/src/template/mapping.json	/^  "console": 60037,$/;"	n
 construct1	dotbot/lib/pyyaml/tests/lib/test_constructor.py	/^    def construct1(constructor, node):$/;"	f	function:_make_objects	file:
@@ -2435,9 +2438,6 @@ full_load	dotbot/lib/pyyaml/lib/yaml/__init__.py	/^def full_load(stream):$/;"	f
 full_load	dotbot/lib/pyyaml/lib3/yaml/__init__.py	/^def full_load(stream):$/;"	f
 full_load_all	dotbot/lib/pyyaml/lib/yaml/__init__.py	/^def full_load_all(stream):$/;"	f
 full_load_all	dotbot/lib/pyyaml/lib3/yaml/__init__.py	/^def full_load_all(stream):$/;"	f
-g:UltiSnipsExpandTrigger	nvim/init.vim	/^    let g:UltiSnipsExpandTrigger = '<tab>'$/;"	v
-g:UltiSnipsJumpBackwardTrigger	nvim/init.vim	/^    let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'$/;"	v
-g:UltiSnipsJumpForwardTrigger	nvim/init.vim	/^    let g:UltiSnipsJumpForwardTrigger = '<tab>'$/;"	v
 g:UltiSnipsSnippetDirectories	nvim/init.vim	/^let g:UltiSnipsSnippetDirectories=[$HOME.'\/.config\/nvim\/UltiSnips']  " using Neovim$/;"	v
 g:UltiSnipsSnippetDirectories	nvim/init.vim	/^let g:UltiSnipsSnippetDirectories=[$HOME.'\/.vim\/UltiSnips']          " using Vim$/;"	v
 g:doge_doc_standard_python	nvim/init.vim	/^let g:doge_doc_standard_python = 'google'$/;"	v
@@ -2448,11 +2448,7 @@ g:startify_lists	nvim/init.vim	/^let g:startify_lists = [$/;"	v
 g:startify_session_autoload	nvim/init.vim	/^let g:startify_session_autoload = 1$/;"	v
 g:startify_session_dir	nvim/init.vim	/^let g:startify_session_dir = '~\/.config\/nvim\/session'$/;"	v
 g:startify_session_persistence	nvim/init.vim	/^let g:startify_session_persistence = 1$/;"	v
-g:tex_flavor	nvim/init.vim	/^    let g:tex_flavor='latex'$/;"	v
 g:vimtex_compiler_latexmk	nvim/init.vim	/^let g:vimtex_compiler_latexmk = {$/;"	v
-g:vimtex_quickfix_mode	nvim/init.vim	/^    let g:vimtex_quickfix_mode=0$/;"	v
-g:vimtex_syntax_conceal_disable	nvim/init.vim	/^    let g:vimtex_syntax_conceal_disable = 1$/;"	v
-g:vimtex_syntax_enabled	nvim/init.vim	/^    let g:vimtex_syntax_enabled = 1$/;"	v
 g:vimtex_view_general_options	nvim/init.vim	/^let g:vimtex_view_general_options = '--unique file:@pdf\\#src:@line@tex'$/;"	v
 g:vimtex_view_general_viewer	nvim/init.vim	/^       let g:vimtex_view_general_viewer = 'SumatraPDF.exe'$/;"	v
 g:vimtex_view_general_viewer	nvim/init.vim	/^       let g:vimtex_view_general_viewer = 'mupdf.exe'$/;"	v
@@ -3057,7 +3053,6 @@ notes	nvim/lua/node_modules/@vscode/codicons/_iconCloud/manifest.transforms.json
 notes	nvim/lua/node_modules/@vscode/codicons/_iconCloud/manifest.transforms.json	/^    "notes": "The collection Key is derived from the collection name.",$/;"	s	object:14
 notification	nvim/lua/node_modules/@vscode/codicons/dist/codicon.html	/^    <div id="notification">📋 Copied: <span id="notification-id"><\/span><\/div>$/;"	I
 notification-id	nvim/lua/node_modules/@vscode/codicons/dist/codicon.html	/^    <div id="notification">📋 Copied: <span id="notification-id"><\/span><\/div>$/;"	I
-np	nvim/test.py	/^import numpy as np$/;"	I	nameref:module:numpy
 ns004955140101	nvim/lua/node_modules/@vscode/codicons/src/icons/pass-filled.svg	/^<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http:\/\/www.w3.org\/2000\/svg" fill="cur/;"	n	uri:http://www.w3.org/2000/svg
 ns00b6dff60101	nvim/lua/node_modules/@vscode/codicons/src/icons/play.svg	/^<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http:\/\/www.w3.org\/2000\/svg" fill="cur/;"	n	uri:http://www.w3.org/2000/svg
 ns014ba6a30101	nvim/lua/node_modules/@vscode/codicons/src/icons/arrow-left.svg	/^<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http:\/\/www.w3.org\/2000\/svg" fill="cur/;"	n	uri:http://www.w3.org/2000/svg
@@ -4424,6 +4419,7 @@ run	dotbot/lib/pyyaml/tests/lib/test_appliance.py	/^def run(collections, args=No
 run	dotbot/lib/pyyaml/tests/lib3/test_appliance.py	/^def run(collections, args=None):$/;"	f
 run	nvim/lua/node_modules/@vscode/codicons/dist/codicon.svg	/^<?xml version="1.0" encoding="utf-8"?><svg xmlns="http:\/\/www.w3.org\/2000\/svg" xmlns:xlink="h/;"	i
 run	nvim/lua/node_modules/@vscode/codicons/src/template/mapping.json	/^  "run": 60204,$/;"	n
+run	nvim/lua/plugins.lua	/^	    run = function() vim.fn['doge#install'](0) end$/;"	f
 run-above	nvim/lua/node_modules/@vscode/codicons/dist/codicon.svg	/^<?xml version="1.0" encoding="utf-8"?><svg xmlns="http:\/\/www.w3.org\/2000\/svg" xmlns:xlink="h/;"	i
 run-above	nvim/lua/node_modules/@vscode/codicons/src/template/mapping.json	/^  "run-above": 60349,$/;"	n
 run-all	nvim/lua/node_modules/@vscode/codicons/dist/codicon.svg	/^<?xml version="1.0" encoding="utf-8"?><svg xmlns="http:\/\/www.w3.org\/2000\/svg" xmlns:xlink="h/;"	i

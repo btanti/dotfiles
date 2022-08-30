@@ -1,10 +1,17 @@
 global !p
 def math():
-	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+	is_math = vim.eval('vimtex#syntax#in_mathzone()') == '1'
+	[x_mini, y_mini] = vim.eval("vimtex#env#is_inside('mini')") 
+	[x_maxi, y_maxi] = vim.eval("vimtex#env#is_inside('maxi')")
+	return is_math or ((x_mini != '0' or x_maxi != '0') and (y_mini != '0' or y_maxi != '0'))
+def comment(): 
+	return vim.eval('vimtex#syntax#in_comment()') == '1'
+def env(name):
+	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+	return x != '0' and y != '0'
 endglobal
 
 ## ENVIRONMENTS ##
-
 
 snippet mk "Math" wA
 $${1}$`!p
@@ -27,6 +34,26 @@ snippet ali "Align" bA
 .\end{align*}
 endsnippet
 
+context "math()"
+snippet msf "math sf" wi
+\mathsf{${VISUAL}$1}
+endsnippet
+
+context "math()"
+snippet <> "langle_rangle " iA
+\langle $1 \rangle $0
+endsnippet
+
+priority 100
+context "math()"
+snippet ... "ldots" iA
+\ldots
+endsnippet
+
+context "math()"
+snippet :; "vdots" iA
+\vdots
+endsnippet
 
 context "math()"
 snippet // "Fraction" iA
@@ -143,6 +170,10 @@ snippet bp "big paren" iA
 \bigg ( $1 \bigg) $0
 endsnippet
 
+snippet b[ "big bracket" iA
+\bigg [ $1 \bigg] $0
+endsnippet
+
 context "math()"
 snippet bigfun "Big function" iA
 \begin{align*}
@@ -205,12 +236,6 @@ snippet xx "cross" iA
 endsnippet
 
 context "math()"
-priority 100
-snippet ** "cdot" iA
-\cdot 
-endsnippet
-
-context "math()"
 snippet norm "norm" iA
 \|$1\|$0
 endsnippet
@@ -236,7 +261,7 @@ endsnippet
 
 priority 100
 context "math()"
-snippet -> "to" iA
+snippet -> "mapsto" iA
 \to 
 endsnippet
 
@@ -247,18 +272,8 @@ snippet <-> "leftrightarrow" iA
 endsnippet
 
 context "math()"
-snippet !> "mapsto" iA
-\mapsto 
-endsnippet
-
-context "math()"
 snippet invs "inverse" iA
 ^{-1}
-endsnippet
-
-context "math()"
-snippet compl "complement" iA
-^{c}
 endsnippet
 
 context "math()"
@@ -291,15 +306,14 @@ snippet || "mid" iA
 \mid 
 endsnippet
 
-
 context "math()"
-snippet cc "subset" Ai
+snippet '(?<!su)cc' "subset" rwA
 \subset 
 endsnippet
 
 context "math()"
-snippet c= "subset" Ai
-\subseteq
+snippet c= "subset" iA
+\subseteq 
 endsnippet
 
 context "math()"
@@ -314,8 +328,14 @@ endsnippet
 
 context "math()"
 snippet NN "n" iA
-\N
+\mathbb{N}
 endsnippet
+
+context "math()"
+snippet ee "exists" iA
+\exists 
+endsnippet
+
 
 context "math()"
 snippet Nn "cap" iA
@@ -341,24 +361,34 @@ snippet OO "emptyset" iA
 \O
 endsnippet
 
+context "math()"
 snippet RR "real" iA
 \mathbb{R}
 endsnippet
 
-snippet QQ "Q" iA
-\Q
+context "math()"
+snippet FF "field" iA
+\mathbb{F}
 endsnippet
 
-snippet ZZ "Z" iA
-\Z
+context "math()"
+snippet QQ "rational" iA
+\mathbb{Q}
 endsnippet
 
-snippet <! "normal" iA
-\triangleleft 
+context "math()"
+snippet ZZ "real" iA
+\mathbb{Z}
 endsnippet
 
-snippet <> "hokje" iA
-\diamond 
+context "math()"
+snippet <! "langle" iA
+\langle 
+endsnippet
+
+context "math()"
+snippet !> "rangle" iA
+\rangle 
 endsnippet
 
 context "math()"
@@ -414,6 +444,11 @@ endsnippet
 context "math()"
 snippet sum "sum" w
 \sum_{$1}^{$2} $3
+endsnippet
+
+context "math()"
+snippet sum* "sum no upper" w
+\sum_{$1} $2
 endsnippet
 
 context "math()"
@@ -507,7 +542,6 @@ context "math()"
 snippet ynn "yn" iA
 y_{n}
 endsnippet
-
 
 context "math()"
 snippet xii "xi" iA

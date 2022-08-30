@@ -62,13 +62,13 @@ unmap f
 map f toggle_fullscreen
 map [fullscreen] f toggle_fullscreen
 
+set sandbox none
 set guioptions none
+set selection-clipboard clipboard
 
 # Open document in fit-width mode by default
 set adjust-open "best-fit"
-map <Left> navigate previous
-map <Right> navigate next
+map j navigate next
+map k navigate previous
 map <C-=> zoom in
 map <C--> zoom out
-map B jumplist backward
-map b jumplist forward

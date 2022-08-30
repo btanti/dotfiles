@@ -1,0 +1,15 @@
+fill: 
+  w: "#FFFFFF"
+  b: "#000000"
+  r: "#FF0000"
+  l: "#0000FF"
+  c: "#00FFFF"
+  y: "#FFFF00"
+  n: "#008000"
+
+stroke: 
+  base: 1.327
+  mult: [0.4,0.8,1.2]
+  color: "#000000"
+  
+opacity: [.12,.40,.80] 

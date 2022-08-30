@@ -1,0 +1,16 @@
+snippet sn "snippet" bA
+`!p snip.rv = "snippet"` ${1:${VISUAL:trigger}} "${2:${VISUAL:name}}" ${3:${VISUAL:opt}}
+    $0
+`!p snip.rv = "endsnippet"`
+
+endsnippet
+
+snippet global "Global snippet" b
+`!p snip.rv = "global"` !p
+${0:${VISUAL}}
+`!p snip.rv = "endglobal"`
+endsnippet
+
+snippet vis "${VISUAL}" i
+\$\{VISUAL${1:${2:default}${3:/transform/}}\}
+endsnippet

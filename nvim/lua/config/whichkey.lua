@@ -22,16 +22,12 @@ function M.setup()
   local mappings = {
     ["w"] = { "<cmd>update!<CR>", "Save" },
     ["q"] = { "<cmd>q!<CR>", "Quit" },
-    ["<s-h>"] =  { "<cmd>bprevious<CR>", "Prev buffer" },
-    ["<s-l>"] =  { "<cmd>bnext<CR>", "Next buffer" },
-    ["<c-h>"] = { "<cmd>previous<CR>", "Prev arg" },
-    ["<c-l>"] =  { "<cmd>next<CR>", "Next arg" },
 
 --Movement Keys
     j = { "<C-w>j", "Focus lower buffer"},
     k  = { "<C-w>k", "Focus upper buffer"},
     l = { "<C-w>l", "Focus right buffer"},
-    h = { "<C-h>l", "Focus left buffer"},
+    h = { "<C-w>h", "Focus left buffer"},
 --Buffer
     b = {
       name = "Buffer",
@@ -44,15 +40,15 @@ function M.setup()
     d = {"<cmd>DogeGenerate<cr>", "Generate documentation"},
     e = {
       name = "Edit",
-      w =  {":e %%"},
-      s =  {":sp %%"},
-      v =  {":vsp &&"}
+      w =  {"<cmd>e %%"},
+      s =  {"<cmd>sp %%"},
+      v =  {"<cmd>vsp &&"}
     },
     f = {
       name = "Diagnostics",
-      e = {":lua vim.diagnostic.open_float()<CR>", "Open (floating)"},
-      n = {":lua vim.diagnostic.goto_next()<CR>", "Goto next"},
-      p = {":lua vim.diagnostic.goto_prev()<CR>", "Goto previous"}
+      e = {"<cmd>lua vim.diagnostic.open_float()<CR>", "Open (floating)"},
+      n = {"<cmd>lua vim.diagnostic.goto_next()<CR>", "Goto next"},
+      p = {"<cmd>lua vim.diagnostic.goto_prev()<CR>", "Goto previous"}
     },
     g = {
         name = "Fugitive",
@@ -91,6 +87,11 @@ function M.setup()
       l = {"<cmd>TroubleToggle loclist<cr>", "Show loclist"},
     },
 
+    u = {
+      name = "UltiSnips",
+      e = {"<cmd>UltiSnipsEdit<cr>", "Edit snippets"},
+      r = {"<cmd>call UltiSnips#RefreshSnippets()<cr>", "Refresh snippets"}
+    },
     z = {
       name = "Packer",
       c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -105,12 +106,24 @@ function M.setup()
 	X = {"<cmd>JupyterExecuteAll", "Execute all cells"},
     },
 --Inkscape
-    ["<s-f>"] = {"<cmd>luafile ~/personal/vim-inkscape/selector.lua<cr>", "Select Figures (tex)"},
-    [",f"] = {"<cmd>luafile ~/personal/vim-inkscape/new_fig.lua<cr>", "Create Figure (tex)"},
+    ["<s-f>"] = {"<cmd>luafile ~/personal/vim-inkscape/new_fig.lua<cr>", "Create Figure (tex)"},
   }
 
   whichkey.setup(conf)
   whichkey.register(mappings, opts)
+-- Control keybindings
+  whichkey.register({
+    ["<c-f>"] = {"<cmd>luafile ~/personal/vim-inkscape/selector.lua<cr>", "Select Figures (tex)"},
+  },
+{
+    mode = "n", -- Normal mode
+    prefix = "",
+    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
+    nowait = false, -- use `nowait` when creating keymaps
+  }
+  )
 end
 
 return M
