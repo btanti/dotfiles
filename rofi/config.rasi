@@ -1,0 +1,10 @@
+/** Basic config file **/
+
+configuration {
+  show-icons:         true;
+  icon-theme:         "Papirus";
+  kb-page-prev: "Control+u";
+  kb-page-next: "Control+d";
+  kb-remove-to-sol: "";
+  kb-remove-char-forward: "";
+}
